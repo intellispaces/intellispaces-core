@@ -1,4 +1,4 @@
-package tech.intellispaces.core.base.traverse;
+package tech.intellispaces.core.traverse;
 
 /**
  * The traverse transition.

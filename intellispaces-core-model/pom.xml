@@ -3,11 +3,11 @@
 
     <parent>
         <groupId>tech.intellispaces.core</groupId>
-        <artifactId>intellispaces-core-base-parent</artifactId>
+        <artifactId>intellispaces-core-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>intellispaces-core-base-model</artifactId>
+    <artifactId>intellispaces-core-model</artifactId>
     <packaging>jar</packaging>
 	
     <build>

@@ -1,4 +1,4 @@
-package tech.intellispaces.core.base;
+package tech.intellispaces.core;
 
 /**
  * The space domain.

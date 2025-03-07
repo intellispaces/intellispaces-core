@@ -8,20 +8,20 @@
     </parent>
 
     <groupId>tech.intellispaces.core</groupId>
-    <artifactId>intellispaces-core-base-parent</artifactId>
+    <artifactId>intellispaces-core-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
 	<modules>
-        <module>intellispaces-core-base-model</module>
-        <module>intellispaces-core-base</module>
+        <module>intellispaces-core-model</module>
+        <module>intellispaces-core</module>
 	</modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>tech.intellispaces.core</groupId>
-                <artifactId>intellispaces-core-base-model</artifactId>
+                <artifactId>intellispaces-core-model</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
