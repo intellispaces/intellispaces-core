@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>tech.intellispaces.core</groupId>
+        <groupId>tech.intellispaces</groupId>
         <artifactId>intellispaces-core-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -29,7 +29,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>tech.intellispaces.core</groupId>
+            <groupId>tech.intellispaces</groupId>
             <artifactId>intellispaces-core-model</artifactId>
         </dependency>
 
