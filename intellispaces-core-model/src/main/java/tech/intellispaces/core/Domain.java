@@ -8,7 +8,7 @@ public interface Domain {
   /**
    * The domain identifier.
    */
-  String did();
+  byte[] id();
 
   /**
    * The full qualified name.

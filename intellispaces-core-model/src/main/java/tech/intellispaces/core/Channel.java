@@ -8,7 +8,7 @@ public interface Channel {
   /**
    * The channel identifier.
    */
-  String cid();
+  byte[] id();
 
   /**
    * The full qualified name.
