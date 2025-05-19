@@ -19,4 +19,8 @@ public interface Channel {
    * The channel context alias.
    */
   String alias();
+
+  Domain sourceDomain();
+
+  Domain targetDomain();
 }

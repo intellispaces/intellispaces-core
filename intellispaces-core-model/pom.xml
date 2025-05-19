@@ -22,4 +22,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>tech.intellispaces.commons</groupId>
+            <artifactId>intellispaces-commons-model</artifactId>
+        </dependency>
+    </dependencies>
 </project>
