@@ -7,9 +7,9 @@ import java.util.List;
  */
 public interface Module {
 
-  void start();
+  Module start();
 
-  void start(String[] args);
+  Module start(String[] args);
 
   void stop();
 
