@@ -20,7 +20,13 @@ public interface Channel {
    */
   String alias();
 
+  /**
+   * The channel source domain.
+   */
   Domain sourceDomain();
 
+  /**
+   * The channel target domain.
+   */
   Domain targetDomain();
 }
