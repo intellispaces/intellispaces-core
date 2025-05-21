@@ -11,9 +11,9 @@ public interface Module {
 
   Module start(String[] args);
 
-  void stop();
+  Module stop();
 
-  void upload();
+  Module upload();
 
   System system();
 
