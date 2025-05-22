@@ -6,6 +6,10 @@ import tech.intellispaces.commons.data.UuidFunctions;
 
 public class Rids {
 
+  public static Rid of(byte[] bytes, String sting) {
+    return new RidImpl(bytes, sting);
+  }
+
   public static Rid of(byte[] bytes) {
     return new RidImpl(bytes);
   }
