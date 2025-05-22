@@ -1,7 +1,6 @@
 package tech.intellispaces.core;
 
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Objects;
 
 class RidImpl implements Rid {
@@ -10,7 +9,7 @@ class RidImpl implements Rid {
 
   RidImpl(byte[] bytes) {
     this.bytes = bytes;
-    this.string = Base64.getEncoder().encodeToString(bytes);
+    this.string = null;
   }
 
   RidImpl(byte[] bytes, String string) {
@@ -19,13 +18,13 @@ class RidImpl implements Rid {
   }
 
   @Override
-  public byte[] asBytes() {
+  public byte[] raw() {
     return bytes;
   }
 
   @Override
-  public String asString() {
-    return string;
+  public String toString() {
+    return string != null ? string : Arrays.toString(bytes);
   }
 
   @Override
@@ -33,8 +32,8 @@ class RidImpl implements Rid {
     if (other == null || !Rid.class.isAssignableFrom(other.getClass())) {
       return false;
     }
-    Rid rId = (Rid) other;
-    return Objects.deepEquals(bytes, rId.asBytes());
+    Rid rid = (Rid) other;
+    return Objects.deepEquals(bytes, rid.raw());
   }
 
   @Override

@@ -5,7 +5,8 @@ package tech.intellispaces.core;
  */
 public interface Rid {
 
-  byte[] asBytes();
-
-  String asString();
+  /**
+   * Returns byte representation of the identifier.
+   */
+  byte[] raw();
 }
