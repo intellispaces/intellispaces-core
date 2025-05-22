@@ -2,12 +2,15 @@ package tech.intellispaces.core;
 
 import tech.intellispaces.commons.type.Type;
 
+/**
+ * The undefined domain reflection.
+ */
 class UndefinedDomainImp implements Domain {
-  private final Rid did = Rids.of(new byte[] {});
+  private final Rid rid = Rids.undefined();
 
   @Override
   public Rid rid() {
-    return did;
+    return rid;
   }
 
   @Override
