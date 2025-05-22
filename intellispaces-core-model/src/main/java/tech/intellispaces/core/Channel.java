@@ -3,12 +3,12 @@ package tech.intellispaces.core;
 /**
  * The space channel.
  */
-public interface Channel {
+public interface Channel extends Reflection {
 
   /**
    * The channel identifier.
    */
-  byte[] id();
+  Rid rid();
 
   /**
    * The full qualified name.
