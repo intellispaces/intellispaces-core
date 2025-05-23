@@ -5,7 +5,7 @@ import tech.intellispaces.commons.properties.PropertiesSet;
 /**
  * The contract for the creation of a reflection.
  */
-public interface ReflectionContract extends Reflection {
+public interface ReflectionContract {
 
   /**
    * The domain of object to be created.

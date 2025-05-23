@@ -16,7 +16,7 @@ public interface ReflectionContracts {
    * @return created contract.
    */
   static ReflectionContract create(Domain domain, String type) {
-    return new ReflectionContractImpl(Rids.undefined(), domain, type, PropertiesSets.empty());
+    return new ReflectionContractImpl(domain, type, PropertiesSets.empty());
   }
 
   /**
@@ -28,7 +28,7 @@ public interface ReflectionContracts {
    * @return created contract.
    */
   static ReflectionContract create(Domain domain, String type, PropertiesSet properties) {
-    return new ReflectionContractImpl(Rids.undefined(), domain, type, properties);
+    return new ReflectionContractImpl(domain, type, properties);
   }
 
   /**
@@ -40,6 +40,6 @@ public interface ReflectionContracts {
    * @return created contract.
    */
   static ReflectionContract create(Rid did, String type, PropertiesSet properties) {
-    return new ReflectionContractImpl(Rids.undefined(), Domains.create(did), type, properties);
+    return new ReflectionContractImpl(Domains.create(did), type, properties);
   }
 }
