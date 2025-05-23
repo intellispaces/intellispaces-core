@@ -33,5 +33,5 @@ public interface Module {
    * @return the list of found guides.
    * @param <G> the requested guide type.
    */
-  <G> List<G> guide(Class<G> guideClass);
+  <G> List<G> guides(Class<G> guideClass);
 }
