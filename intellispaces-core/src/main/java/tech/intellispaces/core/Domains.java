@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import tech.intellispaces.commons.type.Types;
+
 /**
  * The domain provider.
  */
@@ -23,6 +25,16 @@ public class Domains {
    */
   public static Domain create(String name) {
     return new DomainImpl(null, name, null, null, undefinedDomain());
+  }
+
+  /**
+   * Creates a domain reflection.
+   *
+   * @param domainClass the domain class.
+   * @return created domain reflection.
+   */
+  public static Domain create(Class<?> domainClass) {
+    return new DomainImpl(null, domainClass.getCanonicalName(), domainClass, Types.get(domainClass), undefinedDomain());
   }
 
   /**
