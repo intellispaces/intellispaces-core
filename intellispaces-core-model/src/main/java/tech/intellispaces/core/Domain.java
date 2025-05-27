@@ -18,12 +18,12 @@ public interface Domain extends Reflection {
   String name();
 
   /**
-   * The domain class.
+   * The domain class related to this reflection.
    */
   Class<?> domainClass();
 
   /**
-   * The domain type.
+   * The domain type related to this reflection.
    */
   Type<?> domainType();
 }

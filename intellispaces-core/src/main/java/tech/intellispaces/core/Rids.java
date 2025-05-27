@@ -2,8 +2,6 @@ package tech.intellispaces.core;
 
 import java.util.UUID;
 
-import tech.intellispaces.commons.data.UuidFunctions;
-
 public class Rids {
 
   public static Rid of(byte[] bytes, String sting) {
@@ -15,7 +13,7 @@ public class Rids {
   }
 
   public static Rid of(UUID uuid) {
-    return new RidImpl(UuidFunctions.uuidToBytes(uuid), uuid.toString());
+    return new UuidRid(uuid);
   }
 
   public static Rid undefined() {

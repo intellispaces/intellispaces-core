@@ -1,5 +1,6 @@
 package tech.intellispaces.core;
 
+import tech.intellispaces.commons.type.Type;
 import tech.intellispaces.commons.type.Types;
 
 /**
@@ -35,6 +36,10 @@ public class Domains {
    */
   public static Domain create(Class<?> domainClass) {
     return new DomainImpl(null, domainClass.getCanonicalName(), domainClass, Types.get(domainClass), undefinedDomain());
+  }
+
+  public static Domain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
+    return new DomainImpl(rid, name, domainClass, domainType, undefinedDomain());
   }
 
   /**
