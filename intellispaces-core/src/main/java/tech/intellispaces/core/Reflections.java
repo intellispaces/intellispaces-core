@@ -6,7 +6,7 @@ public interface Reflections {
     return new ReflectionImpl(rid, domain);
   }
 
-  static Reflection registered(Reflection reflection, Rid rid) {
+  static Reflection create(Reflection reflection, Rid rid) {
     return new RegisteredReflection(reflection, rid);
   }
 }
