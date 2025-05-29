@@ -8,4 +8,6 @@ public interface SpaceRepository {
   Domain findDomain(String name);
 
   Channel findChannel(String name);
+
+  Channel findChannel(Domain sourceDomain, Domain targetDomain);
 }

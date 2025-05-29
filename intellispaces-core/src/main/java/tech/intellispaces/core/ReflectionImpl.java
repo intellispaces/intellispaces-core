@@ -11,11 +11,11 @@ class ReflectionImpl implements Reflection {
 
   @Override
   public Rid rid() {
-    return null;
+    return rid;
   }
 
   @Override
   public Domain domain() {
-    return null;
+    return domain;
   }
 }
