@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import tech.intellispaces.commons.data.UuidFunctions;
 
-class UuidRid implements Rid {
+class UuidRid extends AbstractRid {
   private final UUID uuid;
 
   UuidRid(UUID uuid) {

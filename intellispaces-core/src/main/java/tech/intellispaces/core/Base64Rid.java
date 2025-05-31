@@ -2,7 +2,7 @@ package tech.intellispaces.core;
 
 import tech.intellispaces.commons.data.Base64Functions;
 
-class Base64Rid implements Rid {
+class Base64Rid extends AbstractRid {
   private final byte[] bytes;
   private final String value;
 
