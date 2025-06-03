@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import org.jetbrains.annotations.Nullable;
+
 import tech.intellispaces.commons.type.Type;
 
 class DomainImpl implements Domain {
@@ -8,13 +10,22 @@ class DomainImpl implements Domain {
   private final Class<?> domainClass;
   private final Type<?> domainType;
   private final Domain domain;
+  private final String foreignDomainName;
 
-  DomainImpl(Rid rid, String name, Class<?> domainClass, Type<?> domainType, Domain domain) {
+  DomainImpl(
+      Rid rid,
+      String name,
+      Class<?> domainClass,
+      Type<?> domainType,
+      Domain domain,
+      String foreignDomainName
+  ) {
     this.rid = rid;
     this.name = name;
     this.domainClass = domainClass;
     this.domainType = domainType;
     this.domain = domain;
+    this.foreignDomainName = foreignDomainName;
   }
 
   @Override
@@ -40,6 +51,11 @@ class DomainImpl implements Domain {
   @Override
   public Domain domain() {
     return domain;
+  }
+
+  @Override
+  public @Nullable String foreignDomainName() {
+    return foreignDomainName;
   }
 
   @Override

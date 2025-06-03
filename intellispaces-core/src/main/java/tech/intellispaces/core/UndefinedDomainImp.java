@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import org.jetbrains.annotations.Nullable;
+
 import tech.intellispaces.commons.type.Type;
 
 /**
@@ -31,5 +33,10 @@ class UndefinedDomainImp implements Domain {
   @Override
   public Domain domain() {
     return Domains.undefine();
+  }
+
+  @Override
+  public @Nullable String foreignDomainName() {
+    return null;
   }
 }
