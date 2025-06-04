@@ -15,7 +15,7 @@ public class Domains {
    * @return created domain reflection.
    */
   public static Domain create(Rid did) {
-    return new DomainImpl(did, null, null, null, undefine(), null);
+    return new DomainImpl(did, null, null, null, undefined(), null);
   }
 
   /**
@@ -25,7 +25,7 @@ public class Domains {
    * @return created domain reflection.
    */
   public static Domain create(String name) {
-    return new DomainImpl(null, name, null, null, undefine(), null);
+    return new DomainImpl(null, name, null, null, undefined(), null);
   }
 
   /**
@@ -40,19 +40,30 @@ public class Domains {
         domainClass.getCanonicalName(),
         domainClass,
         Types.get(domainClass),
-        undefine(),
+        undefined(),
         null
     );
   }
 
+  /**
+   * Creates a domain reflection.
+   *
+   * @param name the domain name.
+   * @param foreignDomainName the name of the foreign domain.
+   * @return created domain reflection.
+   */
+  public static Domain create(String name, String foreignDomainName) {
+    return new DomainImpl(null, name, null, null, undefined(), foreignDomainName);
+  }
+
   public static Domain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
-    return new DomainImpl(rid, name, domainClass, domainType, undefine(), null);
+    return new DomainImpl(rid, name, domainClass, domainType, undefined(), null);
   }
 
   /**
    * Returns undefined domain reflection.
    */
-  public static Domain undefine() {
+  public static Domain undefined() {
     return UNDEFINED_DOMAIN;
   }
 

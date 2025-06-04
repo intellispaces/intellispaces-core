@@ -48,6 +48,6 @@ class ChannelImpl implements Channel {
 
   @Override
   public Domain domain() {
-    return Domains.undefine();
+    return Domains.undefined();
   }
 }

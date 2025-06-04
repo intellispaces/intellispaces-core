@@ -32,7 +32,7 @@ class UndefinedDomainImp implements Domain {
 
   @Override
   public Domain domain() {
-    return Domains.undefine();
+    return Domains.undefined();
   }
 
   @Override

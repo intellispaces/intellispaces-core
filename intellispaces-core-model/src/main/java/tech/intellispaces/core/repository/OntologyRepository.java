@@ -3,7 +3,10 @@ package tech.intellispaces.core.repository;
 import tech.intellispaces.core.Channel;
 import tech.intellispaces.core.Domain;
 
-public interface SpaceRepository {
+/**
+ * The ontology repository.
+ */
+public interface OntologyRepository {
 
   Domain findDomain(String name);
 
