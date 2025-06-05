@@ -7,7 +7,7 @@ import tech.intellispaces.commons.type.Type;
 /**
  * The undefined domain reflection.
  */
-class UndefinedDomainImp implements Domain {
+class UndefinedDomainImp extends AbstractDomain {
   private final Rid rid = Rids.undefined();
 
   @Override

@@ -2,9 +2,10 @@ package tech.intellispaces.core;
 
 import org.jetbrains.annotations.Nullable;
 
+import tech.intellispaces.commons.exception.UnexpectedExceptions;
 import tech.intellispaces.commons.type.Type;
 
-class DomainImpl implements Domain {
+class DomainImpl extends AbstractDomain {
   private final Rid rid;
   private final String name;
   private final Class<?> domainClass;
@@ -20,6 +21,10 @@ class DomainImpl implements Domain {
       Domain domain,
       String foreignDomainName
   ) {
+    if (rid == null && name == null && domainClass == null) {
+      throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
+          "rid, name, domainClass");
+    }
     this.rid = rid;
     this.name = name;
     this.domainClass = domainClass;
@@ -56,22 +61,5 @@ class DomainImpl implements Domain {
   @Override
   public @Nullable String foreignDomainName() {
     return foreignDomainName;
-  }
-
-  @Override
-  public String toString() {
-    var sb = new StringBuilder();
-    if (name != null) {
-      sb.append(name);
-    } else if (domainClass != null) {
-      sb.append(domainClass.getCanonicalName());
-    }
-    if (rid != null) {
-      if (name != null || domainClass != null) {
-        sb.append(" ");
-      }
-      sb.append("[").append(rid).append("]");
-    }
-    return sb.toString();
   }
 }

@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import java.util.Objects;
+
 import tech.intellispaces.commons.type.Type;
 import tech.intellispaces.commons.type.Types;
 
@@ -65,6 +67,21 @@ public class Domains {
    */
   public static Domain undefined() {
     return UNDEFINED_DOMAIN;
+  }
+
+  public static boolean isEqualDomains(Domain domain1, Domain domain2) {
+    Objects.requireNonNull(domain1);
+    Objects.requireNonNull(domain2);
+    if (domain1.rid() != null && domain2.rid() != null) {
+      return Objects.equals(domain1.rid(), domain2.rid());
+    }
+    if (domain1.name() != null && domain2.name() != null) {
+      return Objects.equals(domain1.name(), domain2.name());
+    }
+    if (domain1.domainClass() != null && domain2.domainClass() != null) {
+      return Objects.equals(domain1.domainClass(), domain2.domainClass());
+    }
+    return false;
   }
 
   private static final Domain UNDEFINED_DOMAIN = new UndefinedDomainImp();
