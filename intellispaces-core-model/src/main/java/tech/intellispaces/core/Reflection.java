@@ -1,7 +1,7 @@
 package tech.intellispaces.core;
 
 /**
- * The reflection.
+ * The focused reflection.
  */
 public interface Reflection {
 
