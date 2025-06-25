@@ -1,10 +1,10 @@
 package tech.intellispaces.core;
 
-class ReflectionImpl extends AbstractReflection implements Reflection {
+class PointImpl extends AbstractReflection implements Point {
   private final Rid rid;
   private final Domain domain;
 
-  ReflectionImpl(Rid rid, Domain domain) {
+  PointImpl(Rid rid, Domain domain) {
     this.rid = rid;
     this.domain = domain;
   }

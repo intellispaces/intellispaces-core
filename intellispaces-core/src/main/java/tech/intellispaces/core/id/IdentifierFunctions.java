@@ -1,8 +1,8 @@
 package tech.intellispaces.core.id;
 
-import tech.intellispaces.commons.collection.ArraysFunctions;
-
 import java.util.HexFormat;
+
+import tech.intellispaces.commons.collection.ArraysFunctions;
 
 public interface IdentifierFunctions {
 

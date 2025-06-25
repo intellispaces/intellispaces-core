@@ -10,6 +10,10 @@ import tech.intellispaces.commons.type.Types;
  */
 public class Domains {
 
+  public static DomainBuilder build() {
+    return new DomainBuilder();
+  }
+
   /**
    * Creates a domain reflection.
    *

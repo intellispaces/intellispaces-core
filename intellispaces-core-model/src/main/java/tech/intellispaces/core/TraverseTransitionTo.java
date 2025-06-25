@@ -1,6 +1,4 @@
-package tech.intellispaces.core.traverse;
-
-import tech.intellispaces.core.Domain;
+package tech.intellispaces.core;
 
 /**
  * The traverse transition "TO domain".

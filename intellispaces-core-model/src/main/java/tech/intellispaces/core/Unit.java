@@ -1,7 +1,7 @@
 package tech.intellispaces.core;
 
 /**
- * The unit of intellispaces system module.
+ * The unit of the system module.
  */
 public interface Unit {
 

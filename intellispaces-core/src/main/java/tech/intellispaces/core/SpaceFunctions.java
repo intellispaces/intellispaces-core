@@ -8,16 +8,17 @@ import tech.intellispaces.commons.exception.UnexpectedExceptions;
 public interface SpaceFunctions {
 
   /**
-   * Extracts space name from domain name.
+   * Returns space name from the qualified reflection name.
    *
-   * @param domainName the domain name.
-   * @return a space name.
+   * @param reflectionName the qualified reflection name.
+   * @return the space name.
    */
-  static String spaceNameOfDomain(String domainName) {
-    int index = domainName.indexOf('.');
+  static String getSpaceName(String reflectionName) {
+    int index = reflectionName.indexOf('.');
     if (index <= 0) {
-      throw UnexpectedExceptions.withMessage("Unable to extract a space name from domain name {0}", domainName);
+      throw UnexpectedExceptions.withMessage("Unable to extract a space name from qualified reflection name '{0}'",
+          reflectionName);
     }
-    return domainName.substring(0, index);
+    return reflectionName.substring(0, index);
   }
 }

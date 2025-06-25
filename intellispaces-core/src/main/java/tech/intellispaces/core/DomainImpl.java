@@ -6,7 +6,7 @@ import tech.intellispaces.commons.exception.UnexpectedExceptions;
 import tech.intellispaces.commons.type.Type;
 
 class DomainImpl extends AbstractDomain {
-  private final Rid rid;
+  private final Rid did;
   private final String name;
   private final Class<?> domainClass;
   private final Type<?> domainType;
@@ -14,18 +14,18 @@ class DomainImpl extends AbstractDomain {
   private final String foreignDomainName;
 
   DomainImpl(
-      Rid rid,
+      Rid did,
       String name,
       Class<?> domainClass,
       Type<?> domainType,
       Domain domain,
       String foreignDomainName
   ) {
-    if (rid == null && name == null && domainClass == null) {
+    if (did == null && name == null && domainClass == null) {
       throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
           "rid, name, domainClass");
     }
-    this.rid = rid;
+    this.did = did;
     this.name = name;
     this.domainClass = domainClass;
     this.domainType = domainType;
@@ -35,7 +35,7 @@ class DomainImpl extends AbstractDomain {
 
   @Override
   public Rid rid() {
-    return rid;
+    return did;
   }
 
   @Override

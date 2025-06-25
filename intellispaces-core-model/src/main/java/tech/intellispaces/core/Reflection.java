@@ -1,7 +1,7 @@
 package tech.intellispaces.core;
 
 /**
- * The focused reflection.
+ * The object reflection.
  */
 public interface Reflection {
 
@@ -12,5 +12,16 @@ public interface Reflection {
    */
   Rid rid();
 
+  /**
+   * Returns reflection domain.
+   */
   Domain domain();
+
+  /**
+   * Returns projection of this reflection through identified channel.
+   *
+   * @param cid the channel identifier.
+   * @return the projection.
+   */
+  Projection projectThru(Rid cid);
 }

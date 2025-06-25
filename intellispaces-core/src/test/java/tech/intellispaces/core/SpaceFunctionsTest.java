@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class SpaceFunctionsTest {
 
   @Test
-  public void testSpaceNameOfDomain() {
-    assertThat(SpaceFunctions.spaceNameOfDomain("a.b")).isEqualTo("a");
-    assertThat(SpaceFunctions.spaceNameOfDomain("a.b.c")).isEqualTo("a");
-    assertThatThrownBy(() -> SpaceFunctions.spaceNameOfDomain("a"))
+  public void testGetSpaceName() {
+    assertThat(SpaceFunctions.getSpaceName("a.b")).isEqualTo("a");
+    assertThat(SpaceFunctions.getSpaceName("a.b.c")).isEqualTo("a");
+    assertThatThrownBy(() -> SpaceFunctions.getSpaceName("a"))
         .isExactlyInstanceOf(UnexpectedException.class)
-        .hasMessage("Unable to extract a space name from domain name a");
+        .hasMessage("Unable to extract a space name from qualified reflection name 'a'");
   }
 }

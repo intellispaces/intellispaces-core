@@ -1,6 +1,4 @@
-package tech.intellispaces.core.traverse;
-
-import tech.intellispaces.core.Channel;
+package tech.intellispaces.core;
 
 /**
  * The traverse transition "THRU channel".

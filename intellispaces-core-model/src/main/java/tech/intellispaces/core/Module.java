@@ -3,7 +3,7 @@ package tech.intellispaces.core;
 import java.util.List;
 
 /**
- * The module of intellispaces system.
+ * The module of the system.
  */
 public interface Module {
 

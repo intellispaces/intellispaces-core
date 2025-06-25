@@ -1,6 +1,6 @@
 package tech.intellispaces.core;
 
-class ChannelImpl implements Channel {
+class ChannelImpl extends AbstractReflection implements Channel {
   private final Rid rid;
   private final String name;
   private final String alias;

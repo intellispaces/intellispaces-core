@@ -5,29 +5,31 @@ import org.jetbrains.annotations.Nullable;
 import tech.intellispaces.commons.type.Type;
 
 /**
- * The space domain.
+ * The semantic space domain.
  */
 public interface Domain extends Reflection {
 
   /**
    * The domain identifier.
    */
-  Rid rid();
+  default Rid did() {
+    return rid();
+  }
 
   /**
-   * The full qualified name.
+   * The domain qualified name.
    */
   String name();
 
   /**
    * The domain class related to this reflection.
    */
-  Class<?> domainClass();
+  @Nullable Class<?> domainClass();
 
   /**
    * The domain type related to this reflection.
    */
-  Type<?> domainType();
+  @Nullable Type<?> domainType();
 
   /**
    * The foreign domain qualified name.

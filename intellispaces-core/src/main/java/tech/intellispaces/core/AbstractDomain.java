@@ -1,6 +1,6 @@
 package tech.intellispaces.core;
 
-abstract class AbstractDomain implements Domain {
+abstract class AbstractDomain extends AbstractReflection implements Domain {
 
   @Override
   public String toString() {
