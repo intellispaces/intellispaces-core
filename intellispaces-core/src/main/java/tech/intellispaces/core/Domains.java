@@ -79,8 +79,8 @@ public class Domains {
     if (domain1.rid() != null && domain2.rid() != null) {
       return Objects.equals(domain1.rid(), domain2.rid());
     }
-    if (domain1.name() != null && domain2.name() != null) {
-      return Objects.equals(domain1.name(), domain2.name());
+    if (domain1.rname() != null && domain2.rname() != null) {
+      return Objects.equals(domain1.rname(), domain2.rname());
     }
     if (domain1.domainClass() != null && domain2.domainClass() != null) {
       return Objects.equals(domain1.domainClass(), domain2.domainClass());

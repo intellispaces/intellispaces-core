@@ -13,11 +13,6 @@ public interface Channel extends Reflection {
   }
 
   /**
-   * The channel qualified name.
-   */
-  String name();
-
-  /**
    * The channel alias in the context of the source domain.
    */
   String alias();

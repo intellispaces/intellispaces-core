@@ -6,7 +6,9 @@ import java.util.Map;
 public class DomainBuilder {
   private Rid did;
   private String name;
-  private final Map<Rid, Projection> projections = new HashMap<>();
+  private String foreignDomainName;
+  private final Map<Rid, Projection> cidToProjection = new HashMap<>();
+  private final Map<String, Projection> channelNameToProjection = new HashMap<>();
 
   public DomainBuilder did(Rid did) {
     this.did = did;
@@ -18,8 +20,18 @@ public class DomainBuilder {
     return this;
   }
 
+  public DomainBuilder foreignDomainName(String foreignDomainName) {
+    this.foreignDomainName = foreignDomainName;
+    return this;
+  }
+
   public DomainBuilder setProjection(Rid cid, Projection projection) {
-    projections.put(cid, projection);
+    cidToProjection.put(cid, projection);
+    return this;
+  }
+
+  public DomainBuilder setProjection(String channelName, Projection projection) {
+    channelNameToProjection.put(channelName, projection);
     return this;
   }
 
@@ -30,9 +42,10 @@ public class DomainBuilder {
         null,
         null,
         null,
-        null
+        foreignDomainName
     );
-    domain.setProjections(projections);
+    cidToProjection.forEach(domain::setProjection);
+    channelNameToProjection.forEach(domain::setProjection);
     return domain;
   }
 }

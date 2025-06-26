@@ -17,11 +17,6 @@ public interface Domain extends Reflection {
   }
 
   /**
-   * The domain qualified name.
-   */
-  String name();
-
-  /**
    * The domain class related to this reflection.
    */
   @Nullable Class<?> domainClass();

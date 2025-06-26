@@ -16,7 +16,7 @@ class UndefinedDomainImp extends AbstractDomain {
   }
 
   @Override
-  public String name() {
+  public String rname() {
     return "";
   }
 

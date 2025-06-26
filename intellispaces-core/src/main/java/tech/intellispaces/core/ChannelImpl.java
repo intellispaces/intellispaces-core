@@ -22,12 +22,17 @@ class ChannelImpl extends AbstractReflection implements Channel {
   }
 
   @Override
+  public ReflectionType rtype() {
+    return ReflectionTypes.Channel;
+  }
+
+  @Override
   public Rid rid() {
     return rid;
   }
 
   @Override
-  public String name() {
+  public String rname() {
     return name;
   }
 

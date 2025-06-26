@@ -12,12 +12,17 @@ class SpaceImpl extends AbstractReflection implements Space {
   }
 
   @Override
+  public ReflectionType rtype() {
+    return ReflectionTypes.Space;
+  }
+
+  @Override
   public Rid rid() {
     return sid;
   }
 
   @Override
-  public String name() {
+  public String rname() {
     return name;
   }
 

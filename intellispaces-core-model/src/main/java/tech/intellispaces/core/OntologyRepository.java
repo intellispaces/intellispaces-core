@@ -10,10 +10,18 @@ import org.jetbrains.annotations.Nullable;
 public interface OntologyRepository {
 
   /**
+   * Searches for a reflection by identifier.
+   *
+   * @param rid the reflection identifier.
+   * @return the reflection or <code>null</code> if reflection is not found.
+   */
+  @Nullable Reflection findReflection(Rid rid);
+
+  /**
    * Searches for a reflection by qualified name.
    *
    * @param reflectionName the reflection qualified name.
-   * @return the reflection or <code>null</code> if domain is not found.
+   * @return the reflection or <code>null</code> if reflection is not found.
    */
   @Nullable Reflection findReflection(String reflectionName);
 
@@ -51,12 +59,20 @@ public interface OntologyRepository {
   @Nullable Channel findChannel(Domain sourceDomain, Domain targetDomain);
 
   /**
+   * Searches for a point by qualified name.
+   *
+   * @param pointName the point qualified name.
+   * @return the point or <code>null</code> if point is not found.
+   */
+  @Nullable Point findPoint(String pointName);
+
+  /**
    * Searches for domain projection channels.
    *
    * @param domainName the qualified domain name.
    * @return the list of domain projection channels.
    */
-  List<Channel> projectionChannels(String domainName);
+  List<Channel> findProjectionChannels(String domainName);
 
   /**
    * Searches for context related reflections.

@@ -15,7 +15,9 @@ public class PrototypeReflectionBuilder {
 
   public Reflection get() {
     return new ReflectionImpl(
+        prototype.rtype(),
         rid != null ? rid : prototype.rid(),
+        prototype.rname(),
         prototype.domain()
     );
   }
