@@ -11,7 +11,7 @@ class DomainImpl extends AbstractDomain {
   private final Class<?> domainClass;
   private final Type<?> domainType;
   private final Domain domain;
-  private final String foreignDomainName;
+  private final Domain borrowedDomain;
 
   DomainImpl(
       Rid did,
@@ -19,7 +19,7 @@ class DomainImpl extends AbstractDomain {
       Class<?> domainClass,
       Type<?> domainType,
       Domain domain,
-      String foreignDomainName
+      @Nullable Domain borrowedDomain
   ) {
     if (did == null && name == null && domainClass == null) {
       throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
@@ -30,7 +30,7 @@ class DomainImpl extends AbstractDomain {
     this.domainClass = domainClass;
     this.domainType = domainType;
     this.domain = domain;
-    this.foreignDomainName = foreignDomainName;
+    this.borrowedDomain = borrowedDomain;
   }
 
   @Override
@@ -59,7 +59,7 @@ class DomainImpl extends AbstractDomain {
   }
 
   @Override
-  public @Nullable String foreignDomainName() {
-    return foreignDomainName;
+  public @Nullable Domain borrowedDomain() {
+    return borrowedDomain;
   }
 }

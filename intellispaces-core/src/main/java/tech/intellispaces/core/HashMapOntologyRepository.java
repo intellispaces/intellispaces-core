@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 
+import tech.intellispaces.commons.exception.NotImplementedExceptions;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 public class HashMapOntologyRepository implements ModifiableOntologyRepository {
@@ -54,6 +55,21 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
       return domain;
     }
     throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
+  }
+
+  @Override
+  public List<Domain> findSubdomains(Rid did) {
+    throw NotImplementedExceptions.withCode("g6I9jQ");
+  }
+
+  @Override
+  public List<Domain> findSubdomains(String domainName) {
+    throw NotImplementedExceptions.withCode("QSZRkg");
+  }
+
+  @Override
+  public @Nullable Domain findBorrowedDomain(String domainName) {
+    throw NotImplementedExceptions.withCode("yKMZxw");
   }
 
   @Override

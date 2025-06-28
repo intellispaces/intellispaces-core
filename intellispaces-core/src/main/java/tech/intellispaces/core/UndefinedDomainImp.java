@@ -36,7 +36,7 @@ class UndefinedDomainImp extends AbstractDomain {
   }
 
   @Override
-  public @Nullable String foreignDomainName() {
+  public @Nullable Domain borrowedDomain() {
     return null;
   }
 }

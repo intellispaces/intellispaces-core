@@ -42,6 +42,26 @@ public interface OntologyRepository {
   @Nullable Domain findDomain(String domainName);
 
   /**
+   * Searches for subdomains of a domain.
+   *
+   * @param did the domain identifier.
+   * @return the list of subdomains.
+   */
+  @Nullable
+  List<Domain> findSubdomains(Rid did);
+
+  /**
+   * Searches for subdomains of a domain.
+   *
+   * @param domainName the domain name.
+   * @return the list of subdomains.
+   */
+  @Nullable
+  List<Domain> findSubdomains(String domainName);
+
+  @Nullable Domain findBorrowedDomain(String domainName);
+
+  /**
    * Searches for a channel by qualified name.
    *
    * @param channelName the channel qualified name.

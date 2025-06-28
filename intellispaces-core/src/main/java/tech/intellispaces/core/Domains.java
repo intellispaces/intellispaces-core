@@ -51,17 +51,6 @@ public class Domains {
     );
   }
 
-  /**
-   * Creates a domain reflection.
-   *
-   * @param name the domain name.
-   * @param foreignDomainName the name of the foreign domain.
-   * @return created domain reflection.
-   */
-  public static Domain create(String name, String foreignDomainName) {
-    return new DomainImpl(null, name, null, null, undefined(), foreignDomainName);
-  }
-
   public static Domain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
     return new DomainImpl(rid, name, domainClass, domainType, undefined(), null);
   }

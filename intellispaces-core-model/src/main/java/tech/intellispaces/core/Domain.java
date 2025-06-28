@@ -27,7 +27,7 @@ public interface Domain extends Reflection {
   @Nullable Type<?> domainType();
 
   /**
-   * The foreign domain qualified name.
+   * The borrowed domain.
    */
-  @Nullable String foreignDomainName();
+  @Nullable Domain borrowedDomain();
 }
