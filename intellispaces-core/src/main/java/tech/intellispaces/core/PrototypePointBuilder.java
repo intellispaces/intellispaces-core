@@ -16,7 +16,7 @@ public class PrototypePointBuilder {
   public Point get() {
     return new PointImpl(
         pid != null ? pid : prototype.pid(),
-        prototype.rname(),
+        prototype.reflectionName(),
         prototype.domain()
     );
   }

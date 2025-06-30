@@ -14,7 +14,7 @@ class PointImpl extends AbstractReflection implements Point {
   }
 
   @Override
-  public ReflectionType rtype() {
+  public ReflectionType reflectionType() {
     return ReflectionTypes.Point;
   }
 
@@ -24,7 +24,7 @@ class PointImpl extends AbstractReflection implements Point {
   }
 
   @Override
-  public @Nullable String rname() {
+  public @Nullable String reflectionName() {
     return name;
   }
 

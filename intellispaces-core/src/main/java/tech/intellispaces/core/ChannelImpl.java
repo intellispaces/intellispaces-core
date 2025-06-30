@@ -22,7 +22,7 @@ class ChannelImpl extends AbstractReflection implements Channel {
   }
 
   @Override
-  public ReflectionType rtype() {
+  public ReflectionType reflectionType() {
     return ReflectionTypes.Channel;
   }
 
@@ -32,7 +32,7 @@ class ChannelImpl extends AbstractReflection implements Channel {
   }
 
   @Override
-  public String rname() {
+  public String reflectionName() {
     return name;
   }
 

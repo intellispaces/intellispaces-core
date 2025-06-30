@@ -15,6 +15,13 @@ public final class Projections {
     return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection));
   }
 
+  public static FuzzyProjection fuzzy(
+      double score, Reflection mostLikelyTarget
+  ) {
+    var mostLikelyProjection = new LikelyProjectionImpl(score, mostLikelyTarget);
+    return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection));
+  }
+
   public static Projection unknown() {
     return UNKNOWN_PROJECTION;
   }

@@ -4,30 +4,34 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * The object reflection.
+ * <p>
+ * This interface of the reflection provides the information stored in the reflection itself.
  */
 public interface Reflection {
 
   /**
    * The reflection type.
    */
-  ReflectionType rtype();
+  ReflectionType reflectionType();
 
   /**
-   * The reflection identifier in the current system.
+   * The reflection identifier.
    * <p>
-   * If the reflection is not registered in the current system, then undefined identifier is returned.
+   * If the reflection is not registered, then <code>null</code> should be returned.
    */
   @Nullable
   Rid rid();
 
   /**
    * The reflection qualified name.
+   * <p>
+   * If the reflection is not named, then <code>null</code> should be returned.
    */
   @Nullable
-  String rname();
+  String reflectionName();
 
   /**
-   * Returns reflection domain.
+   * The reflection domain.
    */
   Domain domain();
 
@@ -37,7 +41,7 @@ public interface Reflection {
    * @param cid the channel identifier.
    * @return the projection.
    */
-  Projection projectThru(Rid cid);
+  Projection projectionThru(Rid cid);
 
   /**
    * Returns projection of this reflection through named channel.
@@ -45,5 +49,13 @@ public interface Reflection {
    * @param channelName the channel qualified name.
    * @return the projection.
    */
-  Projection projectThru(String channelName);
+  Projection projectionThru(String channelName);
+
+  /**
+   * Returns projection of this reflection to named domain.
+   *
+   * @param domainName the target domain qualified name.
+   * @return the projection.
+   */
+  Projection projectionTo(String domainName);
 }

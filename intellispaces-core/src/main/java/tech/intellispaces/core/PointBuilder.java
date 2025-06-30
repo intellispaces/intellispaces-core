@@ -9,6 +9,7 @@ public class PointBuilder {
   private Domain domain;
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
+  private final Map<String, Projection> targetDomainNameToProjection = new HashMap<>();
 
   public PointBuilder pid(Rid pid) {
     this.pid = pid;
@@ -25,13 +26,18 @@ public class PointBuilder {
     return this;
   }
 
-  public PointBuilder setProjection(Rid cid, Projection projection) {
+  public PointBuilder setProjectionThru(Rid cid, Projection projection) {
     cidToProjection.put(cid, projection);
     return this;
   }
 
-  public PointBuilder setProjection(String channelName, Projection projection) {
+  public PointBuilder setProjectionThru(String channelName, Projection projection) {
     channelNameToProjection.put(channelName, projection);
+    return this;
+  }
+
+  public PointBuilder setProjectionTo(String domainName, Projection projection) {
+    targetDomainNameToProjection.put(domainName, projection);
     return this;
   }
 
@@ -41,8 +47,9 @@ public class PointBuilder {
         name,
         domain
     );
-    cidToProjection.forEach(point::setProjection);
-    channelNameToProjection.forEach(point::setProjection);
+    cidToProjection.forEach(point::setProjectionThru);
+    channelNameToProjection.forEach(point::setProjectionThru);
+    targetDomainNameToProjection.forEach(point::setProjectionTo);
     return point;
   }
 }

@@ -25,12 +25,12 @@ public class DomainBuilder {
     return this;
   }
 
-  public DomainBuilder setProjection(Rid cid, Projection projection) {
+  public DomainBuilder setProjectionThru(Rid cid, Projection projection) {
     cidToProjection.put(cid, projection);
     return this;
   }
 
-  public DomainBuilder setProjection(String channelName, Projection projection) {
+  public DomainBuilder setProjectionThru(String channelName, Projection projection) {
     channelNameToProjection.put(channelName, projection);
     return this;
   }
@@ -44,8 +44,8 @@ public class DomainBuilder {
         null,
         borrowedDomain
     );
-    cidToProjection.forEach(domain::setProjection);
-    channelNameToProjection.forEach(domain::setProjection);
+    cidToProjection.forEach(domain::setProjectionThru);
+    channelNameToProjection.forEach(domain::setProjectionThru);
     return domain;
   }
 }

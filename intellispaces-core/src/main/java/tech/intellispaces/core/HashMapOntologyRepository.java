@@ -18,8 +18,8 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
     if (reflection.rid() != null) {
       ridToReflectionIndex.put(reflection.rid(), reflection);
     }
-    if (reflection.rname() != null) {
-      rnameToReflectionIndex.put(reflection.rname(), reflection);
+    if (reflection.reflectionName() != null) {
+      rnameToReflectionIndex.put(reflection.reflectionName(), reflection);
     }
   }
 

@@ -39,7 +39,7 @@ class DomainImpl extends AbstractDomain {
   }
 
   @Override
-  public String rname() {
+  public String reflectionName() {
     return name;
   }
 

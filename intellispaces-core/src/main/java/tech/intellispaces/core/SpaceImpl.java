@@ -12,7 +12,7 @@ class SpaceImpl extends AbstractReflection implements Space {
   }
 
   @Override
-  public ReflectionType rtype() {
+  public ReflectionType reflectionType() {
     return ReflectionTypes.Space;
   }
 
@@ -22,7 +22,7 @@ class SpaceImpl extends AbstractReflection implements Space {
   }
 
   @Override
-  public String rname() {
+  public String reflectionName() {
     return name;
   }
 

@@ -28,7 +28,7 @@ public enum ReflectionTypes implements ReflectionType, Enumeration<ReflectionTyp
   Space,
 
   /**
-   * The undefined reflection type.
+   * The unspecified reflection type.
    */
-  Undefined
+  Unspecified
 }
