@@ -17,7 +17,8 @@ public class PrototypePointBuilder {
     return new PointImpl(
         pid != null ? pid : prototype.pid(),
         prototype.reflectionName(),
-        prototype.domain()
+        prototype.domain(),
+        prototype.underlyingPoints()
     );
   }
 }

@@ -4,22 +4,26 @@ import java.util.List;
 
 public final class Projections {
 
+  public static FocusedProjection focused(Reflection target) {
+    return new FocusedProjectionImpl(target);
+  }
+
   public static FocusedProjection focused(String target) {
     return new FocusedProjectionImpl(target);
   }
 
-  public static FuzzyProjection fuzzy(
-      double score, String mostLikelyTarget
-  ) {
+  public static FuzzyProjection fuzzy(double score, Reflection mostLikelyTarget) {
     var mostLikelyProjection = new LikelyProjectionImpl(score, mostLikelyTarget);
-    return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection));
+    return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection), null);
   }
 
-  public static FuzzyProjection fuzzy(
-      double score, Reflection mostLikelyTarget
-  ) {
+  public static FuzzyProjection fuzzy(double score, String mostLikelyTarget) {
     var mostLikelyProjection = new LikelyProjectionImpl(score, mostLikelyTarget);
-    return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection));
+    return new FuzzyProjectionImpl(mostLikelyProjection, List.of(mostLikelyProjection), null);
+  }
+
+  public static FuzzyProjection fuzzy(Reflection collectiveTarget) {
+    return new FuzzyProjectionImpl(null, List.of(), collectiveTarget);
   }
 
   public static Projection unknown() {

@@ -10,7 +10,12 @@ class FocusedProjectionImpl implements FocusedProjection {
   }
 
   @Override
-  public String asString() {
+  public Object target() {
+    return target;
+  }
+
+  @Override
+  public String targetAsString() {
     if (target instanceof String string) {
       return string;
     }
@@ -20,6 +25,11 @@ class FocusedProjectionImpl implements FocusedProjection {
   @Override
   public boolean isFocused() {
     return true;
+  }
+
+  @Override
+  public boolean isFuzzy() {
+    return false;
   }
 
   @Override

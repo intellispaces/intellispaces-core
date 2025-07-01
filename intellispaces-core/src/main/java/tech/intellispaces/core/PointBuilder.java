@@ -1,6 +1,9 @@
 package tech.intellispaces.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PointBuilder {
@@ -10,6 +13,7 @@ public class PointBuilder {
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
   private final Map<String, Projection> targetDomainNameToProjection = new HashMap<>();
+  private final List<Point> underlyingPoints = new ArrayList<>();
 
   public PointBuilder pid(Rid pid) {
     this.pid = pid;
@@ -41,11 +45,22 @@ public class PointBuilder {
     return this;
   }
 
+  public PointBuilder setProjectionTo(String domainName, Point projectionTarget) {
+    targetDomainNameToProjection.put(domainName, Projections.focused(projectionTarget));
+    return this;
+  }
+
+  public PointBuilder addUnderlyingPoint(Point addUnderlyingPoint) {
+    underlyingPoints.add(addUnderlyingPoint);
+    return this;
+  }
+
   public Point get() {
     var point = new PointImpl(
         pid,
         name,
-        domain
+        domain,
+        Collections.unmodifiableList(underlyingPoints)
     );
     cidToProjection.forEach(point::setProjectionThru);
     channelNameToProjection.forEach(point::setProjectionThru);

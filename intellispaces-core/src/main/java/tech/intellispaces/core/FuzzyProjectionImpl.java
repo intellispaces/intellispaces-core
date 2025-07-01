@@ -7,13 +7,16 @@ import tech.intellispaces.commons.exception.UnexpectedExceptions;
 public class FuzzyProjectionImpl implements FuzzyProjection {
   private final LikelyProjection mostLikelyProjection;
   private final List<LikelyProjection> likelyProjection;
+  private final Reflection collectiveTarget;
 
   FuzzyProjectionImpl(
       LikelyProjection mostLikelyProjection,
-      List<LikelyProjection> likelyProjection
+      List<LikelyProjection> likelyProjection,
+      Reflection collectiveTarget
   ) {
     this.mostLikelyProjection = mostLikelyProjection;
     this.likelyProjection = likelyProjection;
+    this.collectiveTarget = collectiveTarget;
   }
 
   @Override
@@ -27,8 +30,18 @@ public class FuzzyProjectionImpl implements FuzzyProjection {
   }
 
   @Override
+  public Reflection collectiveTarget() {
+    return collectiveTarget;
+  }
+
+  @Override
   public boolean isFocused() {
     return false;
+  }
+
+  @Override
+  public boolean isFuzzy() {
+    return true;
   }
 
   @Override

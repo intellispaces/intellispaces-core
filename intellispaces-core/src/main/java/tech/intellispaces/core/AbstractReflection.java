@@ -10,17 +10,17 @@ public abstract class AbstractReflection implements Reflection {
 
   @Override
   public Projection projectionThru(Rid cid) {
-    return cidToProjection.get(cid);
+    return cidToProjection.getOrDefault(cid, Projections.unknown());
   }
 
   @Override
   public Projection projectionThru(String channelName) {
-    return channelNameToProjection.get(channelName);
+    return channelNameToProjection.getOrDefault(channelName, Projections.unknown());
   }
 
   @Override
   public Projection projectionTo(String domainName) {
-    return targetDomainNameToProjection.get(domainName);
+    return targetDomainNameToProjection.getOrDefault(domainName, Projections.unknown());
   }
 
   protected void setProjectionThru(Rid cid, Projection projection) {

@@ -6,9 +6,9 @@ package tech.intellispaces.core;
 public interface TraverseTransitionTo extends TraverseTransition {
 
   /**
-   * The destination domain.
+   * The target domain.
    */
-  Domain domain();
+  Domain targetDomain();
 
   boolean isSuperDomain();
 }

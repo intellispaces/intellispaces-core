@@ -10,6 +10,11 @@ class VoidProjectionImpl implements Projection {
   }
 
   @Override
+  public boolean isFuzzy() {
+    return false;
+  }
+
+  @Override
   public boolean isLikely() {
     return false;
   }

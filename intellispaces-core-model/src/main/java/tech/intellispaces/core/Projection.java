@@ -4,6 +4,8 @@ public interface Projection {
 
   boolean isFocused();
 
+  boolean isFuzzy();
+
   boolean isLikely();
 
   boolean isUnknown();

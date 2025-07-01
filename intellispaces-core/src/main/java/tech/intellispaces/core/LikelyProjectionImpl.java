@@ -17,7 +17,12 @@ class LikelyProjectionImpl implements LikelyProjection {
   }
 
   @Override
-  public String asString() {
+  public Object target() {
+    return target;
+  }
+
+  @Override
+  public String targetAsString() {
     if (target instanceof String string) {
       return string;
     }
@@ -26,6 +31,11 @@ class LikelyProjectionImpl implements LikelyProjection {
 
   @Override
   public boolean isFocused() {
+    return false;
+  }
+
+  @Override
+  public boolean isFuzzy() {
     return false;
   }
 

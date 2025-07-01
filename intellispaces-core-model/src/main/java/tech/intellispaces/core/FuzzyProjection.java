@@ -7,4 +7,6 @@ public interface FuzzyProjection extends Projection {
   LikelyProjection mostLikelyProjection();
 
   List<LikelyProjection> likelyProjection();
+
+  Reflection collectiveTarget();
 }
