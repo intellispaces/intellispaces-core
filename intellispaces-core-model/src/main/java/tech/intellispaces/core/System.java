@@ -16,6 +16,16 @@ public interface System {
   TraversableReflection getReflection(Reflection reflection);
 
   /**
+   * Returns a reflection in the context of the system.
+   *
+   * @param reflection the reflection prototype.
+   * @param reflectionClass the reflection class.
+   * @return the created reflection.
+   * @param <T> the reflection type.
+   */
+  <T> T getReflection(Reflection reflection, Class<T> reflectionClass);
+
+  /**
    * Maps source to specified domain.
    *
    * @param source the source reflection.
