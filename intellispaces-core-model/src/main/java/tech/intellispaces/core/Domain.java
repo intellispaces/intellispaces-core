@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.type.Type;
@@ -30,4 +32,9 @@ public interface Domain extends Reflection {
    * The borrowed domain.
    */
   @Nullable Domain borrowedDomain();
+
+  /**
+   * Returns domain channels.
+   */
+  List<Channel> domainChannels();
 }

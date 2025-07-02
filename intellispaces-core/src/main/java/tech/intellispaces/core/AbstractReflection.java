@@ -1,6 +1,7 @@
 package tech.intellispaces.core;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractReflection implements Reflection {
@@ -21,6 +22,11 @@ public abstract class AbstractReflection implements Reflection {
   @Override
   public Projection projectionTo(String domainName) {
     return targetDomainNameToProjection.getOrDefault(domainName, Projections.unknown());
+  }
+
+  @Override
+  public List<Reflection> relatedReflections() {
+    return List.of();
   }
 
   protected void setProjectionThru(Rid cid, Projection projection) {

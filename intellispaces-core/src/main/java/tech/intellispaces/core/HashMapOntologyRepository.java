@@ -102,7 +102,7 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
   }
 
   @Override
-  public List<Channel> findProjectionChannels(String domainName) {
+  public List<Channel> findDomainChannels(String domainName) {
     return List.of();
   }
 

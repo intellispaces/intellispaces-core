@@ -8,6 +8,14 @@ import java.util.List;
 public interface System {
 
   /**
+   * Returns a reflection in the context of the system.
+   *
+   * @param reflection the reflection prototype.
+   * @return the created reflection.
+   */
+  TraversableReflection getReflection(Reflection reflection);
+
+  /**
    * Maps source to specified domain.
    *
    * @param source the source reflection.

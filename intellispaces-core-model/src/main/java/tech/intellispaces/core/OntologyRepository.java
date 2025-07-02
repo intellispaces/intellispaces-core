@@ -92,7 +92,7 @@ public interface OntologyRepository {
    * @param domainName the qualified domain name.
    * @return the list of domain projection channels.
    */
-  List<Channel> findProjectionChannels(String domainName);
+  List<Channel> findDomainChannels(String domainName);
 
   /**
    * Searches for context related reflections.

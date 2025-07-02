@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
@@ -61,5 +63,10 @@ class DomainImpl extends AbstractDomain {
   @Override
   public @Nullable Domain borrowedDomain() {
     return borrowedDomain;
+  }
+
+  @Override
+  public List<Channel> domainChannels() {
+    return List.of();
   }
 }

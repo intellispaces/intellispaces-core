@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -58,4 +60,9 @@ public interface Reflection {
    * @return the projection.
    */
   Projection projectionTo(String domainName);
+
+  /**
+   * Returns the list of related reflections.
+   */
+  List<Reflection> relatedReflections();
 }

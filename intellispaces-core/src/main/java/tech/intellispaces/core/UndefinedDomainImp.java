@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.type.Type;
@@ -38,5 +40,10 @@ class UndefinedDomainImp extends AbstractDomain {
   @Override
   public @Nullable Domain borrowedDomain() {
     return null;
+  }
+
+  @Override
+  public List<Channel> domainChannels() {
+    return List.of();
   }
 }
