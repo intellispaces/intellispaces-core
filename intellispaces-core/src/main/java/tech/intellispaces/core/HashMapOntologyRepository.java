@@ -34,75 +34,63 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
   }
 
   @Override
-  public @Nullable Space findSpace(String spaceName) {
+  public @Nullable ReflectionSpace findSpace(String spaceName) {
     Reflection reflection = findReflection(spaceName);
     if (reflection == null) {
       return null;
     }
-    if (reflection instanceof Space space) {
+    if (reflection instanceof ReflectionSpace space) {
       return space;
     }
     throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
   }
 
   @Override
-  public @Nullable Domain findDomain(String domainName) {
+  public @Nullable ReflectionDomain findDomain(String domainName) {
     Reflection reflection = findReflection(domainName);
     if (reflection == null) {
       return null;
     }
-    if (reflection instanceof Domain domain) {
+    if (reflection instanceof ReflectionDomain domain) {
       return domain;
     }
     throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
   }
 
   @Override
-  public List<Domain> findSubdomains(Rid did) {
+  public List<ReflectionDomain> findSubdomains(Rid did) {
     throw NotImplementedExceptions.withCode("g6I9jQ");
   }
 
   @Override
-  public List<Domain> findSubdomains(String domainName) {
+  public List<ReflectionDomain> findSubdomains(String domainName) {
     throw NotImplementedExceptions.withCode("QSZRkg");
   }
 
   @Override
-  public @Nullable Domain findBorrowedDomain(String domainName) {
+  public @Nullable ReflectionDomain findBorrowedDomain(String domainName) {
     throw NotImplementedExceptions.withCode("yKMZxw");
   }
 
   @Override
-  public @Nullable Channel findChannel(String channelName) {
+  public @Nullable ReflectionChannel findChannel(String channelName) {
     Reflection reflection = findReflection(channelName);
     if (reflection == null) {
       return null;
     }
-    if (reflection instanceof Channel channel) {
+    if (reflection instanceof ReflectionChannel channel) {
       return channel;
     }
     throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
   }
 
   @Override
-  public @Nullable Channel findChannel(Domain sourceDomain, Domain targetDomain) {
+  public @Nullable ReflectionChannel findChannel(ReflectionDomain sourceDomain, ReflectionDomain targetDomain) {
     return null;
   }
 
   @Override
-  public @Nullable Point findPoint(String pointName) {
-    Reflection reflection = findReflection(pointName);
-    if (reflection == null) {
-      return null;
-    }
-    if (reflection instanceof Point point) {
-      return point;
-    }
-    throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
-  }
-
-  @Override
-  public List<Channel> findDomainChannels(String domainName) {
+  public List<ReflectionChannel> findDomainChannels(String domainName) {
     return List.of();
   }
 

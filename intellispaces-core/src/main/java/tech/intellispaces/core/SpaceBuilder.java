@@ -8,11 +8,7 @@ public class SpaceBuilder {
     return this;
   }
 
-  public Space get() {
-    return new SpaceImpl(
-        null,
-        name,
-        null
-    );
+  public ReflectionSpace get() {
+    return new ReflectionSpaceImpl(null, name);
   }
 }

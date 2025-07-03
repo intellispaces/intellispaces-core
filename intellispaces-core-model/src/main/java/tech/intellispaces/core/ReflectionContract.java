@@ -10,7 +10,7 @@ public interface ReflectionContract {
   /**
    * The domain of object to be created.
    */
-  Domain domain();
+  ReflectionDomain domain();
 
   /**
    * The contract type name.

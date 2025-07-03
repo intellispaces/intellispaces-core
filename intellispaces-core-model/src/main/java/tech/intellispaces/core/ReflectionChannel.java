@@ -1,9 +1,9 @@
 package tech.intellispaces.core;
 
 /**
- * The semantic space channel.
+ * The reflection considered as a channel in semantic space.
  */
-public interface Channel extends Reflection {
+public interface ReflectionChannel extends Reflection {
 
   /**
    * The channel identifier.
@@ -20,10 +20,10 @@ public interface Channel extends Reflection {
   /**
    * The channel source domain.
    */
-  Domain sourceDomain();
+  ReflectionDomain sourceDomain();
 
   /**
    * The channel target domain.
    */
-  Domain targetDomain();
+  ReflectionDomain targetDomain();
 }

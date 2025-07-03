@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface TraversePath {
 
-  Domain sourceDomain();
+  ReflectionDomain sourceDomain();
 
   List<TraverseTransition> transitions();
 }

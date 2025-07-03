@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class TraversePathBuilder {
-  private Domain sourceDomain;
+  private ReflectionDomain sourceDomain;
   private final List<TraverseTransition> transitions = new ArrayList<>();
 
-  public TraversePathBuilder sourceDomain(Domain sourceDomain) {
+  public TraversePathBuilder sourceDomain(ReflectionDomain sourceDomain) {
     this.sourceDomain = sourceDomain;
     return this;
   }

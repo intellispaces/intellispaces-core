@@ -3,14 +3,14 @@ package tech.intellispaces.core;
 import org.jetbrains.annotations.Nullable;
 
 class TraverseTransitionToImpl implements TraverseTransitionTo {
-  private final Domain targetDomain;
+  private final ReflectionDomain targetDomain;
 
-  TraverseTransitionToImpl(Domain targetDomain) {
+  TraverseTransitionToImpl(ReflectionDomain targetDomain) {
     this.targetDomain = targetDomain;
   }
 
   @Override
-  public Domain targetDomain() {
+  public ReflectionDomain targetDomain() {
     return targetDomain;
   }
 

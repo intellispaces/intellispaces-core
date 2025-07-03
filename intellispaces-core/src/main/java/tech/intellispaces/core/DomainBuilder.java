@@ -6,7 +6,7 @@ import java.util.Map;
 public class DomainBuilder {
   private Rid did;
   private String name;
-  private Domain borrowedDomain;
+  private ReflectionDomain borrowedDomain;
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
 
@@ -20,7 +20,7 @@ public class DomainBuilder {
     return this;
   }
 
-  public DomainBuilder borrowedDomain(Domain borrowedDomain) {
+  public DomainBuilder borrowedDomain(ReflectionDomain borrowedDomain) {
     this.borrowedDomain = borrowedDomain;
     return this;
   }
@@ -35,11 +35,10 @@ public class DomainBuilder {
     return this;
   }
 
-  public Domain get() {
-    var domain = new DomainImpl(
+  public ReflectionDomain get() {
+    var domain = new ReflectionDomainImpl(
         did,
         name,
-        null,
         null,
         null,
         borrowedDomain

@@ -9,11 +9,11 @@ import java.util.Map;
 public class PointBuilder {
   private Rid pid;
   private String name;
-  private Domain domain;
+  private ReflectionDomain domain;
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
   private final Map<String, Projection> targetDomainNameToProjection = new HashMap<>();
-  private final List<Point> underlyingPoints = new ArrayList<>();
+  private final List<ReflectionPoint> underlyingPoints = new ArrayList<>();
 
   public PointBuilder pid(Rid pid) {
     this.pid = pid;
@@ -25,7 +25,7 @@ public class PointBuilder {
     return this;
   }
 
-  public PointBuilder domain(Domain domain) {
+  public PointBuilder domain(ReflectionDomain domain) {
     this.domain = domain;
     return this;
   }
@@ -45,18 +45,18 @@ public class PointBuilder {
     return this;
   }
 
-  public PointBuilder setProjectionTo(String domainName, Point projectionTarget) {
+  public PointBuilder setProjectionTo(String domainName, ReflectionPoint projectionTarget) {
     targetDomainNameToProjection.put(domainName, Projections.focused(projectionTarget));
     return this;
   }
 
-  public PointBuilder addUnderlyingPoint(Point addUnderlyingPoint) {
+  public PointBuilder addUnderlyingPoint(ReflectionPoint addUnderlyingPoint) {
     underlyingPoints.add(addUnderlyingPoint);
     return this;
   }
 
-  public Point get() {
-    var point = new PointImpl(
+  public ReflectionPoint get() {
+    var point = new ReflectionPointImpl(
         pid,
         name,
         domain,

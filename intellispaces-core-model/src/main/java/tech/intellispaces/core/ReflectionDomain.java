@@ -7,9 +7,9 @@ import org.jetbrains.annotations.Nullable;
 import tech.intellispaces.commons.type.Type;
 
 /**
- * The semantic space domain.
+ * The reflection considered as a domain of points in semantic space.
  */
-public interface Domain extends Reflection {
+public interface ReflectionDomain extends Reflection {
 
   /**
    * The domain identifier.
@@ -31,10 +31,10 @@ public interface Domain extends Reflection {
   /**
    * The borrowed domain.
    */
-  @Nullable Domain borrowedDomain();
+  @Nullable ReflectionDomain borrowedDomain();
 
   /**
    * Returns domain channels.
    */
-  List<Channel> domainChannels();
+  List<ReflectionChannel> domainChannels();
 }

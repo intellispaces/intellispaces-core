@@ -3,16 +3,16 @@ package tech.intellispaces.core;
 import java.util.List;
 
 class TraversePathImpl implements TraversePath {
-  private final Domain sourceDomain;
+  private final ReflectionDomain sourceDomain;
   private final List<TraverseTransition> transitions;
 
-  TraversePathImpl(Domain sourceDomain, List<TraverseTransition> transitions) {
+  TraversePathImpl(ReflectionDomain sourceDomain, List<TraverseTransition> transitions) {
     this.sourceDomain = sourceDomain;
     this.transitions = transitions;
   }
 
   @Override
-  public Domain sourceDomain() {
+  public ReflectionDomain sourceDomain() {
     return sourceDomain;
   }
 

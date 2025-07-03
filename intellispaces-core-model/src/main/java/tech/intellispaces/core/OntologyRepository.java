@@ -31,7 +31,7 @@ public interface OntologyRepository {
    * @param spaceName the space qualified name.
    * @return the space or <code>null</code> if space is not found.
    */
-  @Nullable Space findSpace(String spaceName);
+  @Nullable ReflectionSpace findSpace(String spaceName);
 
   /**
    * Searches for a domain by qualified name.
@@ -39,7 +39,7 @@ public interface OntologyRepository {
    * @param domainName the domain qualified name.
    * @return the domain or <code>null</code> if domain is not found.
    */
-  @Nullable Domain findDomain(String domainName);
+  @Nullable ReflectionDomain findDomain(String domainName);
 
   /**
    * Searches for subdomains of a domain.
@@ -48,7 +48,7 @@ public interface OntologyRepository {
    * @return the list of subdomains.
    */
   @Nullable
-  List<Domain> findSubdomains(Rid did);
+  List<ReflectionDomain> findSubdomains(Rid did);
 
   /**
    * Searches for subdomains of a domain.
@@ -57,9 +57,9 @@ public interface OntologyRepository {
    * @return the list of subdomains.
    */
   @Nullable
-  List<Domain> findSubdomains(String domainName);
+  List<ReflectionDomain> findSubdomains(String domainName);
 
-  @Nullable Domain findBorrowedDomain(String domainName);
+  @Nullable ReflectionDomain findBorrowedDomain(String domainName);
 
   /**
    * Searches for a channel by qualified name.
@@ -67,7 +67,7 @@ public interface OntologyRepository {
    * @param channelName the channel qualified name.
    * @return the channel or <code>null</code> if channel is not found.
    */
-  @Nullable Channel findChannel(String channelName);
+  @Nullable ReflectionChannel findChannel(String channelName);
 
   /**
    * Searches for a channel between the specified source and target domains.
@@ -76,15 +76,7 @@ public interface OntologyRepository {
    * @param targetDomain the target domain/
    * @return the channel or <code>null</code> if channel is not found.
    */
-  @Nullable Channel findChannel(Domain sourceDomain, Domain targetDomain);
-
-  /**
-   * Searches for a point by qualified name.
-   *
-   * @param pointName the point qualified name.
-   * @return the point or <code>null</code> if point is not found.
-   */
-  @Nullable Point findPoint(String pointName);
+  @Nullable ReflectionChannel findChannel(ReflectionDomain sourceDomain, ReflectionDomain targetDomain);
 
   /**
    * Searches for domain projection channels.
@@ -92,7 +84,7 @@ public interface OntologyRepository {
    * @param domainName the qualified domain name.
    * @return the list of domain projection channels.
    */
-  List<Channel> findDomainChannels(String domainName);
+  List<ReflectionChannel> findDomainChannels(String domainName);
 
   /**
    * Searches for context related reflections.

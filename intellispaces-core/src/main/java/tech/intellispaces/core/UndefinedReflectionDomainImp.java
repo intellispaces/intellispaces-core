@@ -9,7 +9,7 @@ import tech.intellispaces.commons.type.Type;
 /**
  * The undefined domain reflection.
  */
-class UndefinedDomainImp extends AbstractDomain {
+class UndefinedReflectionDomainImp extends AbstractReflectionDomain {
   private final Rid rid = Rids.undefined();
 
   @Override
@@ -33,17 +33,12 @@ class UndefinedDomainImp extends AbstractDomain {
   }
 
   @Override
-  public Domain domain() {
-    return Domains.undefined();
-  }
-
-  @Override
-  public @Nullable Domain borrowedDomain() {
+  public @Nullable ReflectionDomain borrowedDomain() {
     return null;
   }
 
   @Override
-  public List<Channel> domainChannels() {
+  public List<ReflectionChannel> domainChannels() {
     return List.of();
   }
 }

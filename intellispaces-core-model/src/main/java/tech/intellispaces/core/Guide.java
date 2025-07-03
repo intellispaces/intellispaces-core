@@ -8,5 +8,5 @@ public interface Guide {
   /**
    * The related channel.
    */
-  Channel channel();
+  ReflectionChannel channel();
 }

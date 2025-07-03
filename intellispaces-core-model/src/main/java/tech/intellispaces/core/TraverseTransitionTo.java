@@ -8,7 +8,7 @@ public interface TraverseTransitionTo extends TraverseTransition {
   /**
    * The target domain.
    */
-  Domain targetDomain();
+  ReflectionDomain targetDomain();
 
   boolean isSuperDomain();
 }

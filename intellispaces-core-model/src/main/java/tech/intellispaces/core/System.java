@@ -1,7 +1,5 @@
 package tech.intellispaces.core;
 
-import java.util.List;
-
 /**
  * The intellispaces system.
  */
@@ -10,20 +8,50 @@ public interface System {
   /**
    * Returns a reflection in the context of the system.
    *
-   * @param reflection the reflection prototype.
-   * @return the created reflection.
+   * @param reflection the origin reflection.
+   * @return the reflection in the context of the system.
    */
   TraversableReflection getReflection(Reflection reflection);
 
   /**
-   * Returns a reflection in the context of the system.
+   * Returns a point reflection in the context of the system.
    *
-   * @param reflection the reflection prototype.
-   * @param reflectionClass the reflection class.
-   * @return the created reflection.
-   * @param <T> the reflection type.
+   * @param point the origin reflection.
+   * @return the reflection in the context of the system.
    */
-  <T> T getReflection(Reflection reflection, Class<T> reflectionClass);
+  TraversableReflectionPoint getReflection(ReflectionPoint point);
+
+  /**
+   * Returns a space reflection in the context of the system.
+   *
+   * @param space the origin reflection.
+   * @return the reflection in the context of the system.
+   */
+  TraversableReflectionSpace getReflection(ReflectionSpace space);
+
+  /**
+   * Returns a domain reflection in the context of the system.
+   *
+   * @param domain the origin reflection.
+   * @return the reflection in the context of the system.
+   */
+  TraversableReflectionDomain getReflection(ReflectionDomain domain);
+
+  /**
+   * Returns a channel reflection in the context of the system.
+   *
+   * @param channel the origin reflection.
+   * @return the reflection in the context of the system.
+   */
+  TraversableReflectionChannel getReflection(ReflectionChannel channel);
+
+  /**
+   * Creates reflection by contract and registered it in the system.
+   *
+   * @param contract the contract.
+   * @return created reflection.
+   */
+  TraversableReflectionPoint createReflection(ReflectionContract contract);
 
   /**
    * Maps source to specified domain.
@@ -34,7 +62,7 @@ public interface System {
    * @param <S> the source reflection type.
    * @param <T> the target reflection type.
    */
-  <S, T> T mapSourceTo(S source, Domain domain);
+  <S, T> T mapSourceTo(S source, ReflectionDomain domain);
 
   /**
    * Maps source through specified channel.
@@ -43,7 +71,7 @@ public interface System {
    * @param domain the target domain.
    * @return the target reflection.
    */
-  Reflection mapSourceTo(Reflection source, Domain domain);
+  TraversableReflectionPoint mapSourceTo(ReflectionPoint source, ReflectionDomain domain);
 
   /**
    * Maps source through specified channel.
@@ -54,21 +82,5 @@ public interface System {
    * @return the target reflection.
    * @param <R> the target reflection type.
    */
-  <R extends Reflection> R mapSourceTo(Reflection source, Domain targetDomain, Class<R> targetClass);
-
-  /**
-   * Creates by contract a reflection registered in the system.
-   *
-   * @param contract the contract.
-   * @return created reflection.
-   */
-  Reflection create(ReflectionContract contract);
-
-  /**
-   * Searches for factories that create reflections of a given domain.
-   *
-   * @param domain the reflection domain.
-   * @return the list of factories.
-   */
-  List<ReflectionFactory> findFactories(Domain domain);
+  <R extends Reflection> R mapSourceTo(ReflectionPoint source, ReflectionDomain targetDomain, Class<R> targetClass);
 }

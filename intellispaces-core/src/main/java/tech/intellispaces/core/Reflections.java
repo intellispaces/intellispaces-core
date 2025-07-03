@@ -1,16 +1,26 @@
 package tech.intellispaces.core;
 
+import java.util.List;
+
 public interface Reflections {
 
+  static Reflection create(Rid rid) {
+    return new ReflectionImpl(rid, null);
+  }
+
   static Reflection create(String reflectionName) {
-    return new ReflectionImpl(ReflectionTypes.Unspecified, null, reflectionName, null);
+    return new ReflectionImpl(null, reflectionName);
   }
 
-  static Reflection create(Rid rid, Domain domain) {
-    return new ReflectionImpl(ReflectionTypes.Unspecified, rid, null, domain);
+  static ReflectionPoint create(Rid rid, ReflectionDomain domain) {
+    return new ReflectionPointImpl(rid, null, domain, List.of());
   }
 
-  static PrototypeReflectionBuilder build(Reflection prototype) {
-    return new PrototypeReflectionBuilder(prototype);
+  static PointBuilder build() {
+    return new PointBuilder();
+  }
+
+  static PrototypePointBuilder build(ReflectionPoint prototype) {
+    return new PrototypePointBuilder(prototype);
   }
 }

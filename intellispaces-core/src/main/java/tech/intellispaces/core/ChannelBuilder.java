@@ -4,8 +4,9 @@ public class ChannelBuilder {
   private Rid cid;
   private String name;
   private String alias;
-  private Domain sourceDomain;
-  private Domain targetDomain;
+  private ReflectionDomain sourceDomain;
+  private ReflectionDomain targetDomain;
+  private ReflectionDomain domain;
 
   public ChannelBuilder cid(Rid cid) {
     this.cid = cid;
@@ -22,23 +23,29 @@ public class ChannelBuilder {
     return this;
   }
 
-  public ChannelBuilder sourceDomain(Domain sourceDomain) {
+  public ChannelBuilder sourceDomain(ReflectionDomain sourceDomain) {
     this.sourceDomain = sourceDomain;
     return this;
   }
 
-  public ChannelBuilder targetDomain(Domain targetDomain) {
+  public ChannelBuilder targetDomain(ReflectionDomain targetDomain) {
     this.targetDomain = targetDomain;
     return this;
   }
 
-  public Channel get() {
-    return new ChannelImpl(
+  public ChannelBuilder domain(ReflectionDomain domain) {
+    this.domain = domain;
+    return this;
+  }
+
+  public ReflectionChannel get() {
+    return new ReflectionChannelImpl(
         cid,
         name,
         alias,
         sourceDomain,
-        targetDomain
+        targetDomain,
+        domain
     );
   }
 }

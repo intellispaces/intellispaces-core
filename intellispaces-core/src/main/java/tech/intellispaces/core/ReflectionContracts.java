@@ -15,7 +15,7 @@ public interface ReflectionContracts {
    * @param type the contract type name.
    * @return created contract.
    */
-  static ReflectionContract create(Domain domain, String type) {
+  static ReflectionContract create(ReflectionDomain domain, String type) {
     return new ReflectionContractImpl(domain, type, PropertiesSets.empty());
   }
 
@@ -27,7 +27,7 @@ public interface ReflectionContracts {
    * @param properties contract properties.
    * @return created contract.
    */
-  static ReflectionContract create(Domain domain, String type, PropertiesSet properties) {
+  static ReflectionContract create(ReflectionDomain domain, String type, PropertiesSet properties) {
     return new ReflectionContractImpl(domain, type, properties);
   }
 

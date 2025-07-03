@@ -20,8 +20,8 @@ public class Domains {
    * @param did the domain identifier.
    * @return created domain reflection.
    */
-  public static Domain create(Rid did) {
-    return new DomainImpl(did, null, null, null, undefined(), null);
+  public static ReflectionDomain create(Rid did) {
+    return new ReflectionDomainImpl(did, null, null, null, null);
   }
 
   /**
@@ -30,39 +30,22 @@ public class Domains {
    * @param name the domain name.
    * @return created domain reflection.
    */
-  public static Domain create(String name) {
-    return new DomainImpl(null, name, null, null, undefined(), null);
+  public static ReflectionDomain create(String name) {
+    return new ReflectionDomainImpl(null, name, null, null, null);
   }
 
-  /**
-   * Creates a domain reflection.
-   *
-   * @param domainClass the domain class.
-   * @return created domain reflection.
-   */
-  public static Domain create(Class<?> domainClass) {
-    return new DomainImpl(
-        null,
-        domainClass.getCanonicalName(),
-        domainClass,
-        Types.get(domainClass),
-        undefined(),
-        null
-    );
-  }
-
-  public static Domain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
-    return new DomainImpl(rid, name, domainClass, domainType, undefined(), null);
+  public static ReflectionDomain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
+    return new ReflectionDomainImpl(rid, name, domainClass, domainType, null);
   }
 
   /**
    * Returns undefined domain reflection.
    */
-  public static Domain undefined() {
+  public static ReflectionDomain undefined() {
     return UNDEFINED_DOMAIN;
   }
 
-  public static boolean isEqualDomains(Domain domain1, Domain domain2) {
+  public static boolean isEqualDomains(ReflectionDomain domain1, ReflectionDomain domain2) {
     Objects.requireNonNull(domain1);
     Objects.requireNonNull(domain2);
     if (domain1.rid() != null && domain2.rid() != null) {
@@ -77,7 +60,7 @@ public class Domains {
     return false;
   }
 
-  private static final Domain UNDEFINED_DOMAIN = new UndefinedDomainImp();
+  private static final ReflectionDomain UNDEFINED_DOMAIN = new UndefinedReflectionDomainImp();
 
   private Domains() {}
 }

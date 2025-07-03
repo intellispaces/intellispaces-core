@@ -1,21 +1,21 @@
 package tech.intellispaces.core;
 
 public class PrototypePointBuilder {
-  private final Point prototype;
-  private Rid pid;
+  private final ReflectionPoint prototype;
+  private Rid rid;
 
-  public PrototypePointBuilder(Point prototype) {
+  public PrototypePointBuilder(ReflectionPoint prototype) {
     this.prototype = prototype;
   }
 
-  public PrototypePointBuilder pid(Rid pid) {
-    this.pid = pid;
+  public PrototypePointBuilder rid(Rid rid) {
+    this.rid = rid;
     return this;
   }
 
-  public Point get() {
-    return new PointImpl(
-        pid != null ? pid : prototype.pid(),
+  public ReflectionPoint get() {
+    return new ReflectionPointImpl(
+        rid != null ? rid : prototype.rid(),
         prototype.reflectionName(),
         prototype.domain(),
         prototype.underlyingPoints()

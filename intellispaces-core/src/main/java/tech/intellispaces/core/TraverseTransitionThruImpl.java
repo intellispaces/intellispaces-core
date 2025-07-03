@@ -3,14 +3,14 @@ package tech.intellispaces.core;
 import org.jetbrains.annotations.Nullable;
 
 class TraverseTransitionThruImpl implements TraverseTransitionThru {
-  private final Channel channel;
+  private final ReflectionChannel channel;
 
-  TraverseTransitionThruImpl(Channel channel) {
+  TraverseTransitionThruImpl(ReflectionChannel channel) {
     this.channel = channel;
   }
 
   @Override
-  public Channel channel() {
+  public ReflectionChannel channel() {
     return channel;
   }
 

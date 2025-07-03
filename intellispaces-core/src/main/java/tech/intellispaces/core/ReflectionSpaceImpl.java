@@ -6,48 +6,44 @@ import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
-class ReflectionImpl implements Reflection {
-  private Rid rid;
-  private String reflectionName;
+class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace, ReflectionPoint {
+  private final Rid sid;
+  private final String name;
+  @Nullable private final ReflectionDomain domain;
 
-  public ReflectionImpl(@Nullable Rid rid, @Nullable String reflectionName) {
-    this.rid = rid;
-    this.reflectionName = reflectionName;
+  ReflectionSpaceImpl(Rid sid, String name) {
+    this(sid, name, null);
+  }
+
+  ReflectionSpaceImpl(Rid sid, String name, @Nullable ReflectionDomain domain) {
+    this.sid = sid;
+    this.name = name;
+    this.domain = domain;
   }
 
   @Override
-  public @Nullable Rid rid() {
-    return rid;
+  public Rid rid() {
+    return sid;
   }
 
   @Override
-  public @Nullable String reflectionName() {
-    return reflectionName;
+  public String reflectionName() {
+    return name;
   }
 
   @Override
-  public Projection projectionThru(Rid cid) {
-    return Projections.unknown();
+  public ReflectionDomain domain() {
+    return domain;
   }
 
   @Override
-  public Projection projectionThru(String channelName) {
-    return Projections.unknown();
-  }
-
-  @Override
-  public Projection projectionTo(String domainName) {
-    return Projections.unknown();
-  }
-
-  @Override
-  public List<Reflection> relatedReflections() {
+  public List<ReflectionPoint> underlyingPoints() {
     return List.of();
   }
 
   @Override
   public boolean canBeRepresentedAsPoint() {
-    return false;
+    return domain != null;
   }
 
   @Override
@@ -62,11 +58,14 @@ class ReflectionImpl implements Reflection {
 
   @Override
   public boolean canBeRepresentedAsSpace() {
-    return false;
+    return true;
   }
 
   @Override
   public ReflectionPoint asPoint() {
+    if (canBeRepresentedAsPoint()) {
+      return this;
+    }
     throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection point");
   }
 
@@ -82,6 +81,6 @@ class ReflectionImpl implements Reflection {
 
   @Override
   public ReflectionSpace asSpace() {
-    throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection space");
+    return this;
   }
 }

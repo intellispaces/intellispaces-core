@@ -5,5 +5,5 @@ package tech.intellispaces.core;
  */
 public interface TraverseTransitionThru extends TraverseTransition {
 
-  Channel channel();
+  ReflectionChannel channel();
 }

@@ -2,57 +2,29 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
-
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
-class ReflectionImpl implements Reflection {
-  private Rid rid;
-  private String reflectionName;
+abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomain, ReflectionPoint {
+  protected ReflectionDomain domain;
 
-  public ReflectionImpl(@Nullable Rid rid, @Nullable String reflectionName) {
-    this.rid = rid;
-    this.reflectionName = reflectionName;
+  @Override
+  public ReflectionDomain domain() {
+    return domain;
   }
 
   @Override
-  public @Nullable Rid rid() {
-    return rid;
-  }
-
-  @Override
-  public @Nullable String reflectionName() {
-    return reflectionName;
-  }
-
-  @Override
-  public Projection projectionThru(Rid cid) {
-    return Projections.unknown();
-  }
-
-  @Override
-  public Projection projectionThru(String channelName) {
-    return Projections.unknown();
-  }
-
-  @Override
-  public Projection projectionTo(String domainName) {
-    return Projections.unknown();
-  }
-
-  @Override
-  public List<Reflection> relatedReflections() {
+  public List<ReflectionPoint> underlyingPoints() {
     return List.of();
   }
 
   @Override
   public boolean canBeRepresentedAsPoint() {
-    return false;
+    return domain != null;
   }
 
   @Override
   public boolean canBeRepresentedAsDomain() {
-    return false;
+    return true;
   }
 
   @Override
@@ -67,12 +39,15 @@ class ReflectionImpl implements Reflection {
 
   @Override
   public ReflectionPoint asPoint() {
+    if (canBeRepresentedAsPoint()) {
+      return this;
+    }
     throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection point");
   }
 
   @Override
   public ReflectionDomain asDomain() {
-    throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection domain");
+    return this;
   }
 
   @Override
@@ -83,5 +58,22 @@ class ReflectionImpl implements Reflection {
   @Override
   public ReflectionSpace asSpace() {
     throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection space");
+  }
+
+  @Override
+  public String toString() {
+    var sb = new StringBuilder();
+    if (reflectionName() != null) {
+      sb.append(reflectionName());
+    } else if (domainClass() != null) {
+      sb.append(domainClass().getCanonicalName());
+    }
+    if (rid() != null) {
+      if (reflectionName() != null || domainClass() != null) {
+        sb.append(" ");
+      }
+      sb.append("[").append(rid()).append("]");
+    }
+    return sb.toString();
   }
 }
