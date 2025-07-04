@@ -26,6 +26,14 @@ public interface OntologyRepository {
   @Nullable Reflection findReflection(String reflectionName);
 
   /**
+   * Searches for a reflection.
+   *
+   * @param reference the reflection reference.
+   * @return the reflection or <code>null</code> if reflection is not found.
+   */
+  @Nullable Reflection findReflection(ReflectionReference reference);
+
+  /**
    * Searches for a space by qualified name.
    *
    * @param spaceName the space qualified name.

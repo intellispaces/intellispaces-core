@@ -41,6 +41,11 @@ class ReflectionImpl implements Reflection {
   }
 
   @Override
+  public Projection projectionTo(ReflectionDomain domain) {
+    return Projections.unknown();
+  }
+
+  @Override
   public List<Reflection> relatedReflections() {
     return List.of();
   }

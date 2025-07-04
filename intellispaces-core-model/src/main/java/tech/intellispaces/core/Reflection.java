@@ -3,9 +3,7 @@ package tech.intellispaces.core;
 import java.util.List;
 
 /**
- * The reflection description.
- * <p>
- * This interface of the reflection provides the information stored in the reflection itself.
+ * The abstract reflection.
  */
 public interface Reflection extends ReflectionReference {
 
@@ -32,6 +30,14 @@ public interface Reflection extends ReflectionReference {
    * @return the projection.
    */
   Projection projectionTo(String domainName);
+
+  /**
+   * Returns projection of this reflection to target domain.
+   *
+   * @param domain the target domain.
+   * @return the projection.
+   */
+  Projection projectionTo(ReflectionDomain domain);
 
   /**
    * Returns the list of related reflections.

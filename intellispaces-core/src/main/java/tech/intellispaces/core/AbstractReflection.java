@@ -25,6 +25,14 @@ public abstract class AbstractReflection implements Reflection {
   }
 
   @Override
+  public Projection projectionTo(ReflectionDomain domain) {
+    if (domain.reflectionName() != null) {
+      return projectionTo(domain.reflectionName());
+    }
+    return Projections.unknown();
+  }
+
+  @Override
   public List<Reflection> relatedReflections() {
     return List.of();
   }

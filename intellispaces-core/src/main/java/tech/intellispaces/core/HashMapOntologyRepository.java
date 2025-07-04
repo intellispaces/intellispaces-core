@@ -34,6 +34,18 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
   }
 
   @Override
+  public @Nullable Reflection findReflection(ReflectionReference reference) {
+    Reflection reflection = null;
+    if (reference.rid() != null) {
+      reflection = findReflection(reference.rid());
+    }
+    if (reflection == null && reference.reflectionName() != null) {
+      reflection = findReflection(reference.reflectionName());
+    }
+    return reflection;
+  }
+
+  @Override
   public @Nullable ReflectionSpace findSpace(String spaceName) {
     Reflection reflection = findReflection(spaceName);
     if (reflection == null) {

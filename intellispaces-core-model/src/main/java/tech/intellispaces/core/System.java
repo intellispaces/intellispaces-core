@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * The intellispaces system.
  */
@@ -8,42 +10,10 @@ public interface System {
   /**
    * Returns a reflection in the context of the system.
    *
-   * @param reflection the origin reflection.
-   * @return the reflection in the context of the system.
+   * @param reference the reflection reference.
+   * @return the reflection in the context of the system or <code>null</code> if reflection is not found in system.
    */
-  TraversableReflection getReflection(Reflection reflection);
-
-  /**
-   * Returns a point reflection in the context of the system.
-   *
-   * @param point the origin reflection.
-   * @return the reflection in the context of the system.
-   */
-  TraversableReflectionPoint getReflection(ReflectionPoint point);
-
-  /**
-   * Returns a space reflection in the context of the system.
-   *
-   * @param space the origin reflection.
-   * @return the reflection in the context of the system.
-   */
-  TraversableReflectionSpace getReflection(ReflectionSpace space);
-
-  /**
-   * Returns a domain reflection in the context of the system.
-   *
-   * @param domain the origin reflection.
-   * @return the reflection in the context of the system.
-   */
-  TraversableReflectionDomain getReflection(ReflectionDomain domain);
-
-  /**
-   * Returns a channel reflection in the context of the system.
-   *
-   * @param channel the origin reflection.
-   * @return the reflection in the context of the system.
-   */
-  TraversableReflectionChannel getReflection(ReflectionChannel channel);
+  @Nullable TraversableReflection getReflection(ReflectionReference reference);
 
   /**
    * Creates reflection by contract and registered it in the system.
@@ -71,7 +41,7 @@ public interface System {
    * @param domain the target domain.
    * @return the target reflection.
    */
-  TraversableReflectionPoint mapSourceTo(ReflectionPoint source, ReflectionDomain domain);
+  TraversableReflectionPoint mapSourceTo(Reflection source, ReflectionDomain domain);
 
   /**
    * Maps source through specified channel.
@@ -82,5 +52,5 @@ public interface System {
    * @return the target reflection.
    * @param <R> the target reflection type.
    */
-  <R extends Reflection> R mapSourceTo(ReflectionPoint source, ReflectionDomain targetDomain, Class<R> targetClass);
+  <R extends Reflection> R mapSourceTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
 }

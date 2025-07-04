@@ -4,20 +4,24 @@ import java.util.List;
 
 public interface Reflections {
 
-  static Reflection create(Rid rid) {
-    return new ReflectionImpl(rid, null);
+  static ReflectionReference create(Rid rid) {
+    return new ReflectionReferenceImpl(rid, null);
   }
 
-  static Reflection create(String reflectionName) {
-    return new ReflectionImpl(null, reflectionName);
+  static ReflectionReference create(String reflectionName) {
+    return new ReflectionReferenceImpl(null, reflectionName);
+  }
+
+  static ReflectionReference create(Rid rid, String reflectionName) {
+    return new ReflectionReferenceImpl(rid, reflectionName);
   }
 
   static ReflectionPoint create(Rid rid, ReflectionDomain domain) {
     return new ReflectionPointImpl(rid, null, domain, List.of());
   }
 
-  static PointBuilder build() {
-    return new PointBuilder();
+  static ReflectionBuilder build() {
+    return new ReflectionBuilder();
   }
 
   static PrototypePointBuilder build(ReflectionPoint prototype) {
