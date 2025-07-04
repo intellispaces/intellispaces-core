@@ -2,7 +2,6 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
-import tech.intellispaces.commons.exception.NotImplementedExceptions;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 class ReflectionChannelImpl extends AbstractReflection implements ReflectionChannel, ReflectionPoint {

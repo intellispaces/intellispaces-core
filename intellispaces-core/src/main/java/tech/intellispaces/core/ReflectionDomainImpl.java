@@ -13,13 +13,15 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   private final Class<?> domainClass;
   private final Type<?> domainType;
   private final ReflectionDomain borrowedDomain;
+  private final List<ReflectionDomain> parentDomains;
 
   ReflectionDomainImpl(
       Rid did,
       String name,
       Class<?> domainClass,
       Type<?> domainType,
-      @Nullable ReflectionDomain borrowedDomain
+      @Nullable ReflectionDomain borrowedDomain,
+      List<ReflectionDomain> parentDomains
   ) {
     if (did == null && name == null && domainClass == null) {
       throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
@@ -30,6 +32,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
     this.domainClass = domainClass;
     this.domainType = domainType;
     this.borrowedDomain = borrowedDomain;
+    this.parentDomains = parentDomains;
   }
 
   @Override
@@ -60,5 +63,10 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   @Override
   public List<ReflectionChannel> domainChannels() {
     return List.of();
+  }
+
+  @Override
+  public List<ReflectionDomain> parentDomains() {
+    return parentDomains;
   }
 }

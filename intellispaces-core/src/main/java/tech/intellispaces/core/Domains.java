@@ -1,9 +1,9 @@
 package tech.intellispaces.core;
 
+import java.util.List;
 import java.util.Objects;
 
 import tech.intellispaces.commons.type.Type;
-import tech.intellispaces.commons.type.Types;
 
 /**
  * The domain provider.
@@ -21,28 +21,21 @@ public class Domains {
    * @return created domain reflection.
    */
   public static ReflectionDomain create(Rid did) {
-    return new ReflectionDomainImpl(did, null, null, null, null);
+    return new ReflectionDomainImpl(did, null, null, null, null, List.of());
   }
 
   /**
    * Creates a domain reflection.
    *
-   * @param name the domain name.
+   * @param domainName the domain name.
    * @return created domain reflection.
    */
-  public static ReflectionDomain create(String name) {
-    return new ReflectionDomainImpl(null, name, null, null, null);
+  public static ReflectionDomain create(String domainName) {
+    return new ReflectionDomainImpl(null, domainName, null, null, null, List.of());
   }
 
-  public static ReflectionDomain create(Rid rid, String name, Class<?> domainClass, Type<?> domainType) {
-    return new ReflectionDomainImpl(rid, name, domainClass, domainType, null);
-  }
-
-  /**
-   * Returns undefined domain reflection.
-   */
-  public static ReflectionDomain undefined() {
-    return UNDEFINED_DOMAIN;
+  public static ReflectionDomain create(Rid rid, String domainName, Class<?> domainClass, Type<?> domainType) {
+    return new ReflectionDomainImpl(rid, domainName, domainClass, domainType, null, List.of());
   }
 
   public static boolean isEqualDomains(ReflectionDomain domain1, ReflectionDomain domain2) {
@@ -59,8 +52,6 @@ public class Domains {
     }
     return false;
   }
-
-  private static final ReflectionDomain UNDEFINED_DOMAIN = new UndefinedReflectionDomainImp();
 
   private Domains() {}
 }

@@ -2,30 +2,12 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
-
 /**
- * The abstract reflection.
+ * The reflection description.
  * <p>
  * This interface of the reflection provides the information stored in the reflection itself.
  */
-public interface Reflection {
-
-  /**
-   * The reflection identifier.
-   * <p>
-   * If the reflection is not registered, then <code>null</code> should be returned.
-   */
-  @Nullable
-  Rid rid();
-
-  /**
-   * The reflection qualified name.
-   * <p>
-   * If the reflection is not named, then <code>null</code> should be returned.
-   */
-  @Nullable
-  String reflectionName();
+public interface Reflection extends ReflectionReference {
 
   /**
    * Returns projection of this reflection through identified channel.

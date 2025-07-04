@@ -34,7 +34,12 @@ public interface ReflectionDomain extends Reflection {
   @Nullable ReflectionDomain borrowedDomain();
 
   /**
-   * Returns domain channels.
+   * Domain outgoing channels.
    */
   List<ReflectionChannel> domainChannels();
+
+  /**
+   * Parent domains.
+   */
+  List<ReflectionDomain> parentDomains();
 }

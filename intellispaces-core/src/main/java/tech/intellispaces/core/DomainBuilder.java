@@ -1,6 +1,9 @@
 package tech.intellispaces.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DomainBuilder {
@@ -9,6 +12,7 @@ public class DomainBuilder {
   private ReflectionDomain borrowedDomain;
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
+  private final List<ReflectionDomain> parentDomains = new ArrayList<>();
 
   public DomainBuilder did(Rid did) {
     this.did = did;
@@ -35,13 +39,19 @@ public class DomainBuilder {
     return this;
   }
 
+  public DomainBuilder addParentDomains(List<ReflectionDomain> parentDomains) {
+    this.parentDomains.addAll(parentDomains);
+    return this;
+  }
+
   public ReflectionDomain get() {
     var domain = new ReflectionDomainImpl(
         did,
         name,
         null,
         null,
-        borrowedDomain
+        borrowedDomain,
+        Collections.unmodifiableList(parentDomains)
     );
     cidToProjection.forEach(domain::setProjectionThru);
     channelNameToProjection.forEach(domain::setProjectionThru);
