@@ -10,39 +10,27 @@ import tech.intellispaces.commons.exception.NotImplementedExceptions;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 public class HashMapOntologyRepository implements ModifiableOntologyRepository {
-  private final Map<Rid, Reflection> ridToReflectionIndex = new HashMap<>();
-  private final Map<String, Reflection> rnameToReflectionIndex = new HashMap<>();
+  private final Map<String, Reflection> nameToReflectionIndex = new HashMap<>();
+  private final Map<Rid, ReflectionPoint> pidToReflectionIndex = new HashMap<>();
 
   @Override
   public void add(Reflection reflection) {
-    if (reflection.rid() != null) {
-      ridToReflectionIndex.put(reflection.rid(), reflection);
-    }
     if (reflection.reflectionName() != null) {
-      rnameToReflectionIndex.put(reflection.reflectionName(), reflection);
+      nameToReflectionIndex.put(reflection.reflectionName(), reflection);
     }
-  }
-
-  @Override
-  public @Nullable Reflection findReflection(Rid rid) {
-    return ridToReflectionIndex.get(rid);
+    if (reflection.rid() != null && reflection.canBeRepresentedAsPoint()) {
+      pidToReflectionIndex.put(reflection.rid(), reflection.asPoint());
+    }
   }
 
   @Override
   public @Nullable Reflection findReflection(String reflectionName) {
-    return rnameToReflectionIndex.get(reflectionName);
+    return nameToReflectionIndex.get(reflectionName);
   }
 
   @Override
-  public @Nullable Reflection findReflection(ReflectionReference reference) {
-    Reflection reflection = null;
-    if (reference.rid() != null) {
-      reflection = findReflection(reference.rid());
-    }
-    if (reflection == null && reference.reflectionName() != null) {
-      reflection = findReflection(reference.reflectionName());
-    }
-    return reflection;
+  public @Nullable ReflectionPoint findReflection(Rid pid, String domainName) {
+    return pidToReflectionIndex.get(pid);
   }
 
   @Override

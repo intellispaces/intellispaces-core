@@ -8,12 +8,21 @@ import org.jetbrains.annotations.Nullable;
 public interface System {
 
   /**
-   * Returns a reflection in the context of the system.
+   * Searches for a reflection by name in the system.
    *
-   * @param reference the reflection reference.
-   * @return the reflection in the context of the system or <code>null</code> if reflection is not found in system.
+   * @param reflectionName the qualified reflection name.
+   * @return the reflection or <code>null</code> if reflection is not found.
    */
-  @Nullable TraversableReflection getReflection(ReflectionReference reference);
+  @Nullable TraversableReflection getReflection(String reflectionName);
+
+  /**
+   * Searches for a reflection by reflection identifier and domain name in the system.
+   *
+   * @param pid the reflection identifier.
+   * @param domainName the reflection domain name.
+   * @return the reflection or <code>null</code> if reflection is not found.
+   */
+  @Nullable TraversableReflectionPoint getReflection(Rid pid, String domainName);
 
   /**
    * Creates reflection by contract and registered it in the system.

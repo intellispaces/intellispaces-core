@@ -10,28 +10,21 @@ import org.jetbrains.annotations.Nullable;
 public interface OntologyRepository {
 
   /**
-   * Searches for a reflection by identifier.
+   * Searches for a reflection by name in the system.
    *
-   * @param rid the reflection identifier.
-   * @return the reflection or <code>null</code> if reflection is not found.
-   */
-  @Nullable Reflection findReflection(Rid rid);
-
-  /**
-   * Searches for a reflection by qualified name.
-   *
-   * @param reflectionName the reflection qualified name.
+   * @param reflectionName the qualified reflection name.
    * @return the reflection or <code>null</code> if reflection is not found.
    */
   @Nullable Reflection findReflection(String reflectionName);
 
   /**
-   * Searches for a reflection.
+   * Searches for a reflection by reflection identifier and domain name in the system.
    *
-   * @param reference the reflection reference.
+   * @param pid the reflection identifier.
+   * @param domainName the reflection domain name.
    * @return the reflection or <code>null</code> if reflection is not found.
    */
-  @Nullable Reflection findReflection(ReflectionReference reference);
+  @Nullable ReflectionPoint findReflection(Rid pid, String domainName);
 
   /**
    * Searches for a space by qualified name.

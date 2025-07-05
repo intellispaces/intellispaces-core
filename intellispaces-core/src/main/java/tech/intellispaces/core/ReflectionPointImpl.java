@@ -35,6 +35,14 @@ class ReflectionPointImpl extends AbstractReflection implements ReflectionPoint 
   }
 
   @Override
+  public @Nullable String domainName() {
+    if (domain != null) {
+      return domain.reflectionName();
+    }
+    return null;
+  }
+
+  @Override
   public List<ReflectionPoint> underlyingPoints() {
     return underlyingPoints;
   }

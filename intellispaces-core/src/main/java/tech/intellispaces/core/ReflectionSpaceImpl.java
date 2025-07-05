@@ -37,6 +37,14 @@ class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace,
   }
 
   @Override
+  public @Nullable String domainName() {
+    if (domain != null) {
+      return domain.reflectionName();
+    }
+    return null;
+  }
+
+  @Override
   public List<ReflectionPoint> underlyingPoints() {
     return List.of();
   }

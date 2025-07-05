@@ -2,6 +2,8 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomain, ReflectionPoint {
@@ -10,6 +12,14 @@ abstract class AbstractReflectionDomain extends AbstractReflection implements Re
   @Override
   public ReflectionDomain domain() {
     return domain;
+  }
+
+  @Override
+  public @Nullable String domainName() {
+    if (domain != null) {
+      return domain.reflectionName();
+    }
+    return null;
   }
 
   @Override

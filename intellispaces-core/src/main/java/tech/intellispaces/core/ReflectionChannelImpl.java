@@ -2,6 +2,8 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 class ReflectionChannelImpl extends AbstractReflection implements ReflectionChannel, ReflectionPoint {
@@ -56,6 +58,14 @@ class ReflectionChannelImpl extends AbstractReflection implements ReflectionChan
   @Override
   public ReflectionDomain domain() {
     return domain;
+  }
+
+  @Override
+  public @Nullable String domainName() {
+    if (domain != null) {
+      return domain.reflectionName();
+    }
+    return null;
   }
 
   @Override
