@@ -61,7 +61,7 @@ public class FuzzyProjectionImpl implements FuzzyProjection {
 
   @Override
   public FocusedProjection asFocused() {
-    throw UnexpectedExceptions.withMessage("Attempt to case fuzzy projection to focused projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast fuzzy projection to focused projection");
   }
 
   @Override

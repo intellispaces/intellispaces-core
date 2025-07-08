@@ -18,11 +18,14 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   ReflectionDomainImpl(
       Rid did,
       String name,
+      ReflectionDomain domain,
       Class<?> domainClass,
       Type<?> domainType,
       @Nullable ReflectionDomain borrowedDomain,
       List<ReflectionDomain> parentDomains
   ) {
+    super(domain);
+
     if (did == null && name == null && domainClass == null) {
       throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
           "rid, name, domainClass");

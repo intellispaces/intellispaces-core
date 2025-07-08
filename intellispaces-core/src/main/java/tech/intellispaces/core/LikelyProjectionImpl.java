@@ -61,6 +61,6 @@ class LikelyProjectionImpl implements LikelyProjection {
 
   @Override
   public FuzzyProjection asFuzzy() {
-    throw UnexpectedExceptions.withMessage("Attempt to case likely projection to fuzzy projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast likely projection to fuzzy projection");
   }
 }

@@ -1,5 +1,6 @@
 package tech.intellispaces.core;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
@@ -8,6 +9,19 @@ import org.jetbrains.annotations.Nullable;
  * The ontology repository.
  */
 public interface OntologyRepository {
+
+  /**
+   * Returns spaces supported by the repository.
+   */
+  Collection<String> spaces();
+
+  /**
+   * Adds reflection to repository.
+   *
+   * @param reflection the reflection.
+   * @return <code>true</code> if reflection added to repository or <code>false</code> otherwise.
+   */
+  boolean add(Reflection reflection);
 
   /**
    * Searches for a reflection by name in the system.

@@ -31,11 +31,11 @@ class VoidProjectionImpl implements Projection {
 
   @Override
   public FocusedProjection asFocused() {
-    throw UnexpectedExceptions.withMessage("Attempt to case void projection to focused projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast void projection to focused projection");
   }
 
   @Override
   public FuzzyProjection asFuzzy() {
-    throw UnexpectedExceptions.withMessage("Attempt to case void projection to fuzzy projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast void projection to fuzzy projection");
   }
 }

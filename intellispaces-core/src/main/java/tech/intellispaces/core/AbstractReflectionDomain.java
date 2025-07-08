@@ -9,6 +9,10 @@ import tech.intellispaces.commons.exception.UnexpectedExceptions;
 abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomain, ReflectionPoint {
   protected ReflectionDomain domain;
 
+  AbstractReflectionDomain(ReflectionDomain domain) {
+    this.domain = domain;
+  }
+
   @Override
   public ReflectionDomain domain() {
     return domain;

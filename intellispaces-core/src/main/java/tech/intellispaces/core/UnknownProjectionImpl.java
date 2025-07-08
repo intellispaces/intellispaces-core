@@ -31,11 +31,11 @@ class UnknownProjectionImpl implements Projection {
 
   @Override
   public FocusedProjection asFocused() {
-    throw UnexpectedExceptions.withMessage("Attempt to case unknown projection to focused projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast unknown projection to focused projection");
   }
 
   @Override
   public FuzzyProjection asFuzzy() {
-    throw UnexpectedExceptions.withMessage("Attempt to case unknown projection to fuzzy projection");
+    throw UnexpectedExceptions.withMessage("Attempt to cast unknown projection to fuzzy projection");
   }
 }

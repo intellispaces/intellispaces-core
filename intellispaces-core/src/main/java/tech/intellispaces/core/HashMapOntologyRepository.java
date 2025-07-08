@@ -9,18 +9,32 @@ import org.jetbrains.annotations.Nullable;
 import tech.intellispaces.commons.exception.NotImplementedExceptions;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
-public class HashMapOntologyRepository implements ModifiableOntologyRepository {
+public class HashMapOntologyRepository implements OntologyRepository {
+  private final String spaceName;
   private final Map<String, Reflection> nameToReflectionIndex = new HashMap<>();
   private final Map<Rid, ReflectionPoint> pidToReflectionIndex = new HashMap<>();
 
+  public HashMapOntologyRepository(String spaceName) {
+    this.spaceName = spaceName;
+  }
+
   @Override
-  public void add(Reflection reflection) {
+  public List<String> spaces() {
+    return List.of(spaceName);
+  }
+
+  @Override
+  public boolean add(Reflection reflection) {
+    boolean added = false;
     if (reflection.reflectionName() != null) {
       nameToReflectionIndex.put(reflection.reflectionName(), reflection);
+      added = true;
     }
     if (reflection.rid() != null && reflection.canBeRepresentedAsPoint()) {
       pidToReflectionIndex.put(reflection.rid(), reflection.asPoint());
+      added = true;
     }
+    return added;
   }
 
   @Override
@@ -64,7 +78,7 @@ public class HashMapOntologyRepository implements ModifiableOntologyRepository {
 
   @Override
   public List<ReflectionDomain> findSubdomains(String domainName) {
-    throw NotImplementedExceptions.withCode("QSZRkg");
+    return List.of();
   }
 
   @Override
