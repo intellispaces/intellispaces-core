@@ -44,16 +44,16 @@ public interface System {
   <S, T> T mapSourceTo(S source, ReflectionDomain domain);
 
   /**
-   * Maps source through specified channel.
+   * Maps source to specified domain.
    *
    * @param source the source reflection.
-   * @param domain the target domain.
+   * @param targetDomain the target domain.
    * @return the target reflection.
    */
-  TraversableReflectionPoint mapSourceTo(Reflection source, ReflectionDomain domain);
+  TraversableReflectionPoint mapSourceTo(Reflection source, ReflectionDomain targetDomain);
 
   /**
-   * Maps source through specified channel.
+   * Maps source to specified domain and casts to required class.
    *
    * @param source the source reflection.
    * @param targetDomain the target domain.
@@ -61,5 +61,5 @@ public interface System {
    * @return the target reflection.
    * @param <R> the target reflection type.
    */
-  <R extends Reflection> R mapSourceTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
+  <R extends Reflection> R mapAndCastSourceTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
 }
