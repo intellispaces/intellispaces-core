@@ -62,4 +62,17 @@ public interface System {
    * @param <R> the target reflection type.
    */
   <R extends Reflection> R mapAndCastSourceTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
+
+  /**
+   * Maps source to specified domain and casts to required class.
+   *
+   * @param source the source reflection.
+   * @param targetDomain the target domain.
+   * @param qualifier the qualifier.
+   * @param targetClass the target reflection class.
+   * @return the target reflection.
+   * @param <Q> the qualifier type.
+   * @param <R> the target reflection type.
+   */
+  <Q, R extends Reflection> R mapAndCastSourceTo(Reflection source, ReflectionDomain targetDomain,Q qualifier, Class<R> targetClass);
 }
