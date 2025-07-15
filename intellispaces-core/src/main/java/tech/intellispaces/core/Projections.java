@@ -8,7 +8,7 @@ public final class Projections {
     return new FocusedProjectionImpl(target);
   }
 
-  public static FocusedProjection focused(String target) {
+  public static FocusedProjection focused(Object target) {
     return new FocusedProjectionImpl(target);
   }
 
