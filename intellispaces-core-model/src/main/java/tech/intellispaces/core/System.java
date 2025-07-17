@@ -33,7 +33,7 @@ public interface System {
   TraversableReflectionPoint createReflection(ReflectionContract contract);
 
   /**
-   * Maps source to specified domain.
+   * Maps reflection to specified domain.
    *
    * @param source the source reflection.
    * @param domain the target domain.
@@ -41,19 +41,19 @@ public interface System {
    * @param <S> the source reflection type.
    * @param <T> the target reflection type.
    */
-  <S, T> T mapSourceTo(S source, ReflectionDomain domain);
+  <S, T> T mapTo(S source, ReflectionDomain domain);
 
   /**
-   * Maps source to specified domain.
+   * Maps reflection to specified domain.
    *
    * @param source the source reflection.
    * @param targetDomain the target domain.
    * @return the target reflection.
    */
-  TraversableReflectionPoint mapSourceTo(Reflection source, ReflectionDomain targetDomain);
+  TraversableReflectionPoint mapTo(Reflection source, ReflectionDomain targetDomain);
 
   /**
-   * Maps source to specified domain and casts to required class.
+   * Maps reflection to specified domain and casts to required class.
    *
    * @param source the source reflection.
    * @param targetDomain the target domain.
@@ -61,10 +61,10 @@ public interface System {
    * @return the target reflection.
    * @param <R> the target reflection type.
    */
-  <R extends Reflection> R mapAndCastSourceTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
+  <R extends Reflection> R mapAndCastTo(Reflection source, ReflectionDomain targetDomain, Class<R> targetClass);
 
   /**
-   * Maps source to specified domain and casts to required class.
+   * Maps reflection to specified domain and casts to required class.
    *
    * @param source the source reflection.
    * @param targetDomain the target domain.
@@ -74,5 +74,17 @@ public interface System {
    * @param <Q> the qualifier type.
    * @param <R> the target reflection type.
    */
-  <Q, R extends Reflection> R mapAndCastSourceTo(Reflection source, ReflectionDomain targetDomain,Q qualifier, Class<R> targetClass);
+  <Q, R extends Reflection> R mapAndCastTo(Reflection source, ReflectionDomain targetDomain, Q qualifier, Class<R> targetClass);
+
+  /**
+   * Moves reflection through specified channel.
+   *
+   * @param reflection the source reflection.
+   * @param channelId the channel identifier.
+   * @param qualifier the qualifier.
+   *
+   * @param <S> the source reflection type.
+   * @param <Q> the qualifier domain.
+   */
+  <S, Q> void moveThruChannel1(S reflection, Rid channelId, Q qualifier);
 }
