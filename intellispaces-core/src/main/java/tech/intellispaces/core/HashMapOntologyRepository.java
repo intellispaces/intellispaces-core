@@ -10,24 +10,24 @@ import tech.intellispaces.commons.exception.NotImplementedExceptions;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 public class HashMapOntologyRepository implements OntologyRepository {
-  private final String spaceName;
-  private final Map<String, Reflection> nameToReflectionIndex = new HashMap<>();
+  private final String spaceAlias;
   private final Map<Rid, ReflectionPoint> pidToReflectionIndex = new HashMap<>();
+  private final Map<String, Reflection> aliasToReflectionIndex = new HashMap<>();
 
-  public HashMapOntologyRepository(String spaceName) {
-    this.spaceName = spaceName;
+  public HashMapOntologyRepository(String spaceAlias) {
+    this.spaceAlias = spaceAlias;
   }
 
   @Override
   public List<String> spaces() {
-    return List.of(spaceName);
+    return List.of(spaceAlias);
   }
 
   @Override
   public boolean add(Reflection reflection) {
     boolean added = false;
     if (reflection.reflectionName() != null) {
-      nameToReflectionIndex.put(reflection.reflectionName(), reflection);
+      aliasToReflectionIndex.put(reflection.reflectionName(), reflection);
       added = true;
     }
     if (reflection.rid() != null && reflection.canBeRepresentedAsPoint()) {
@@ -38,12 +38,12 @@ public class HashMapOntologyRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable Reflection findReflection(String reflectionName) {
-    return nameToReflectionIndex.get(reflectionName);
+  public @Nullable Reflection findReflection(String alias) {
+    return aliasToReflectionIndex.get(alias);
   }
 
   @Override
-  public @Nullable ReflectionPoint findReflection(Rid pid, String domainName) {
+  public @Nullable ReflectionPoint findReflection(Rid pid, String domainAlias) {
     return pidToReflectionIndex.get(pid);
   }
 
@@ -82,13 +82,13 @@ public class HashMapOntologyRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionDomain findBorrowedDomain(String domainName) {
+  public @Nullable ReflectionDomain findBorrowedDomain(String domainAlias) {
     throw NotImplementedExceptions.withCode("yKMZxw");
   }
 
   @Override
-  public @Nullable ReflectionChannel findChannel(String channelName) {
-    Reflection reflection = findReflection(channelName);
+  public @Nullable ReflectionChannel findChannel(String channelAlias) {
+    Reflection reflection = findReflection(channelAlias);
     if (reflection == null) {
       return null;
     }
@@ -104,12 +104,17 @@ public class HashMapOntologyRepository implements OntologyRepository {
   }
 
   @Override
-  public List<ReflectionChannel> findDomainChannels(String domainName) {
+  public List<ReflectionChannel> findDomainContextChannels(String domainAlias) {
     return List.of();
   }
 
   @Override
-  public List<Reflection> findRelatedReflections(String reflectionName) {
+  public List<Reflection> findRelatedReflections(String reflectionAlias) {
+    return List.of();
+  }
+
+  @Override
+  public List<Reflection> findRelatedReflections(Rid pid, Rid did) {
     return List.of();
   }
 }

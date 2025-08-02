@@ -24,37 +24,37 @@ public interface OntologyRepository {
   boolean add(Reflection reflection);
 
   /**
-   * Searches for a reflection by name in the system.
+   * Searches for a reflection by alias.
    *
-   * @param reflectionName the qualified reflection name.
+   * @param alias the qualified alias of the reflection.
    * @return the reflection or <code>null</code> if reflection is not found.
    */
-  @Nullable Reflection findReflection(String reflectionName);
+  @Nullable Reflection findReflection(String alias);
 
   /**
-   * Searches for a reflection by reflection identifier and domain name in the system.
+   * Searches for a reflection by reflection identifier and domain alias.
    *
    * @param pid the reflection identifier.
-   * @param domainName the reflection domain name.
+   * @param domainAlias the qualified alias of the reflection domain.
    * @return the reflection or <code>null</code> if reflection is not found.
    */
-  @Nullable ReflectionPoint findReflection(Rid pid, String domainName);
+  @Nullable ReflectionPoint findReflection(Rid pid, String domainAlias);
 
   /**
-   * Searches for a space by qualified name.
+   * Searches for a space by alias.
    *
-   * @param spaceName the space qualified name.
+   * @param alias the space alias.
    * @return the space or <code>null</code> if space is not found.
    */
-  @Nullable ReflectionSpace findSpace(String spaceName);
+  @Nullable ReflectionSpace findSpace(String alias);
 
   /**
-   * Searches for a domain by qualified name.
+   * Searches for a domain by alias.
    *
-   * @param domainName the domain qualified name.
+   * @param alias the qualified alias of the domain.
    * @return the domain or <code>null</code> if domain is not found.
    */
-  @Nullable ReflectionDomain findDomain(String domainName);
+  @Nullable ReflectionDomain findDomain(String alias);
 
   /**
    * Searches for subdomains of a domain.
@@ -68,44 +68,53 @@ public interface OntologyRepository {
   /**
    * Searches for subdomains of a domain.
    *
-   * @param domainName the domain name.
+   * @param domainAlias the qualified alias of the reflection domain.
    * @return the list of subdomains.
    */
   @Nullable
-  List<ReflectionDomain> findSubdomains(String domainName);
+  List<ReflectionDomain> findSubdomains(String domainAlias);
 
-  @Nullable ReflectionDomain findBorrowedDomain(String domainName);
+  @Nullable ReflectionDomain findBorrowedDomain(String domainAlias);
 
   /**
-   * Searches for a channel by qualified name.
+   * Searches for a channel by alias.
    *
-   * @param channelName the channel qualified name.
+   * @param channelAlias the qualified alias of the channel.
    * @return the channel or <code>null</code> if channel is not found.
    */
-  @Nullable ReflectionChannel findChannel(String channelName);
+  @Nullable ReflectionChannel findChannel(String channelAlias);
 
   /**
    * Searches for a channel between the specified source and target domains.
    *
    * @param sourceDomain the source domain.
-   * @param targetDomain the target domain/
+   * @param targetDomain the target domain.
    * @return the channel or <code>null</code> if channel is not found.
    */
   @Nullable ReflectionChannel findChannel(ReflectionDomain sourceDomain, ReflectionDomain targetDomain);
 
   /**
-   * Searches for domain projection channels.
+   * Searches for domain context channels.
    *
-   * @param domainName the qualified domain name.
-   * @return the list of domain projection channels.
+   * @param domainAlias the qualified alias of the reflection domain.
+   * @return the list of domain context channels.
    */
-  List<ReflectionChannel> findDomainChannels(String domainName);
+  List<ReflectionChannel> findDomainContextChannels(String domainAlias);
 
   /**
    * Searches for context related reflections.
    *
-   * @param reflectionName the reflection qualified name.
+   * @param reflectionAlias the qualified alias of the reflection.
    * @return the list of related reflections.
    */
-  List<Reflection> findRelatedReflections(String reflectionName);
+  List<Reflection> findRelatedReflections(String reflectionAlias);
+
+  /**
+   * Searches for context related reflections.
+   *
+   * @param pid the reflection identifier.
+   * @param did the domain identified.
+   * @return the list of related reflections.
+   */
+  List<Reflection> findRelatedReflections(Rid pid, Rid did);
 }

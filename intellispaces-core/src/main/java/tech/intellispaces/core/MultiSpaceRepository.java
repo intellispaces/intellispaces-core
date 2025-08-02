@@ -36,9 +36,9 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable Reflection findReflection(String reflectionName) {
-    for (OntologyRepository repository : selectRepositories(reflectionName)) {
-      Reflection reflection = repository.findReflection(reflectionName);
+  public @Nullable Reflection findReflection(String alias) {
+    for (OntologyRepository repository : selectRepositories(alias)) {
+      Reflection reflection = repository.findReflection(alias);
       if (reflection != null) {
         return reflection;
       }
@@ -47,9 +47,9 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionPoint findReflection(Rid pid, String domainName) {
-    for (OntologyRepository repository : selectRepositories(domainName)) {
-      ReflectionPoint reflection = repository.findReflection(pid, domainName);
+  public @Nullable ReflectionPoint findReflection(Rid pid, String domainAlias) {
+    for (OntologyRepository repository : selectRepositories(domainAlias)) {
+      ReflectionPoint reflection = repository.findReflection(pid, domainAlias);
       if (reflection != null) {
         return reflection;
       }
@@ -104,9 +104,9 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionDomain findBorrowedDomain(String domainName) {
-    for (OntologyRepository repository : selectRepositories(domainName)) {
-      ReflectionDomain reflection = repository.findBorrowedDomain(domainName);
+  public @Nullable ReflectionDomain findBorrowedDomain(String domainAlias) {
+    for (OntologyRepository repository : selectRepositories(domainAlias)) {
+      ReflectionDomain reflection = repository.findBorrowedDomain(domainAlias);
       if (reflection != null) {
         return reflection;
       }
@@ -115,9 +115,9 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionChannel findChannel(String channelName) {
-    for (OntologyRepository repository : selectRepositories(channelName)) {
-      ReflectionChannel reflection = repository.findChannel(channelName);
+  public @Nullable ReflectionChannel findChannel(String channelAlias) {
+    for (OntologyRepository repository : selectRepositories(channelAlias)) {
+      ReflectionChannel reflection = repository.findChannel(channelAlias);
       if (reflection != null) {
         return reflection;
       }
@@ -139,9 +139,9 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public List<ReflectionChannel> findDomainChannels(String domainName) {
-    for (OntologyRepository repository : selectRepositories(domainName)) {
-      List<ReflectionChannel> channels = repository.findDomainChannels(domainName);
+  public List<ReflectionChannel> findDomainContextChannels(String domainAlias) {
+    for (OntologyRepository repository : selectRepositories(domainAlias)) {
+      List<ReflectionChannel> channels = repository.findDomainContextChannels(domainAlias);
       if (channels != null) {
         return channels;
       }
@@ -150,11 +150,24 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public List<Reflection> findRelatedReflections(String reflectionName) {
-    for (OntologyRepository repository : selectRepositories(reflectionName)) {
-      List<Reflection> relatedReflections = repository.findRelatedReflections(reflectionName);
+  public List<Reflection> findRelatedReflections(String reflectionAlias) {
+    for (OntologyRepository repository : selectRepositories(reflectionAlias)) {
+      List<Reflection> relatedReflections = repository.findRelatedReflections(reflectionAlias);
       if (relatedReflections != null) {
         return relatedReflections;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public List<Reflection> findRelatedReflections(Rid pid, Rid did) {
+    for (List<OntologyRepository> repositories : repositories.values()) {
+      for (OntologyRepository repository : repositories) {
+        List<Reflection> relatedReflections = repository.findRelatedReflections(pid, did);
+        if (!relatedReflections.isEmpty()) {
+          return relatedReflections;
+        }
       }
     }
     return null;

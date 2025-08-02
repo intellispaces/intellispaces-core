@@ -8,16 +8,16 @@ import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace, ReflectionPoint {
   private final Rid sid;
-  private final String name;
+  private final String alais;
   @Nullable private final ReflectionDomain domain;
 
-  ReflectionSpaceImpl(Rid sid, String name) {
-    this(sid, name, null);
+  ReflectionSpaceImpl(Rid sid, String alais) {
+    this(sid, alais, null);
   }
 
-  ReflectionSpaceImpl(Rid sid, String name, @Nullable ReflectionDomain domain) {
+  ReflectionSpaceImpl(Rid sid, String alais, @Nullable ReflectionDomain domain) {
     this.sid = sid;
-    this.name = name;
+    this.alais = alais;
     this.domain = domain;
   }
 
@@ -28,7 +28,7 @@ class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace,
 
   @Override
   public String reflectionName() {
-    return name;
+    return alais;
   }
 
   @Override
