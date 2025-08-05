@@ -41,6 +41,15 @@ public interface OntologyRepository {
   @Nullable ReflectionPoint findReflection(Rid pid, String domainAlias);
 
   /**
+   * Searches for a reflection by reflection and domain identifiers.
+   *
+   * @param pid the reflection identifier.
+   * @param did the reflection domain identifier.
+   * @return the reflection or <code>null</code> if reflection is not found.
+   */
+  @Nullable ReflectionPoint findReflection(Rid pid, Rid did);
+
+  /**
    * Searches for a space by alias.
    *
    * @param alias the space alias.
@@ -55,6 +64,8 @@ public interface OntologyRepository {
    * @return the domain or <code>null</code> if domain is not found.
    */
   @Nullable ReflectionDomain findDomain(String alias);
+
+  Projection findProjection(Rid rid, Rid did, Rid cid);
 
   /**
    * Searches for subdomains of a domain.

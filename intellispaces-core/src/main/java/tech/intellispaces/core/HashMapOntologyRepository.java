@@ -48,6 +48,11 @@ public class HashMapOntologyRepository implements OntologyRepository {
   }
 
   @Override
+  public @Nullable ReflectionPoint findReflection(Rid pid, Rid did) {
+    return pidToReflectionIndex.get(pid);
+  }
+
+  @Override
   public @Nullable ReflectionSpace findSpace(String spaceName) {
     Reflection reflection = findReflection(spaceName);
     if (reflection == null) {
@@ -69,6 +74,11 @@ public class HashMapOntologyRepository implements OntologyRepository {
       return domain;
     }
     throw UnexpectedExceptions.withMessage("The reflection type does not match the requested type");
+  }
+
+  @Override
+  public Projection findProjection(Rid rid, Rid did, Rid cid) {
+    return Projections.unknown();
   }
 
   @Override

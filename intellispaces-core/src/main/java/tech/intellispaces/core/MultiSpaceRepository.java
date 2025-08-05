@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 
+import tech.intellispaces.commons.exception.NotImplementedExceptions;
+
 /**
  * The multi space ontology repository.
  */
@@ -58,6 +60,19 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
+  public @Nullable ReflectionPoint findReflection(Rid pid, Rid did) {
+    for (List<OntologyRepository> repositories : repositories.values()) {
+      for (OntologyRepository repository : repositories) {
+        ReflectionPoint reflection = repository.findReflection(pid, did);
+        if (reflection != null) {
+          return reflection;
+        }
+      }
+    }
+    return null;
+  }
+
+  @Override
   public @Nullable ReflectionSpace findSpace(String spaceName) {
     for (OntologyRepository repository : selectRepositories(spaceName)) {
       ReflectionSpace reflection = repository.findSpace(spaceName);
@@ -77,6 +92,33 @@ public class MultiSpaceRepository implements OntologyRepository {
       }
     }
     return null;
+  }
+
+  @Override
+  public Projection findProjection(Rid rid, Rid did, Rid cid) {
+    Projection resultProjection = null;
+    List<Projection> projections = null;
+    for (List<OntologyRepository> repositories : repositories.values()) {
+      for (OntologyRepository repository : repositories) {
+        Projection projection = repository.findProjection(rid, did, cid);
+        if (!projection.isUnknown()) {
+          if (resultProjection == null) {
+            resultProjection = projection;
+          } else {
+            if (projections == null) {
+              projections = new ArrayList<>();
+              projections.add(resultProjection);
+              resultProjection = null;
+            }
+            projections.add(projection);
+          }
+        }
+      }
+    }
+    if (projections != null) {
+      throw NotImplementedExceptions.withCode("KBgxgA");
+    }
+    return resultProjection != null ? resultProjection : Projections.unknown();
   }
 
   @Override
@@ -146,7 +188,7 @@ public class MultiSpaceRepository implements OntologyRepository {
         return channels;
       }
     }
-    return null;
+    return List.of();
   }
 
   @Override
@@ -157,7 +199,7 @@ public class MultiSpaceRepository implements OntologyRepository {
         return relatedReflections;
       }
     }
-    return null;
+    return List.of();
   }
 
   @Override
@@ -170,7 +212,7 @@ public class MultiSpaceRepository implements OntologyRepository {
         }
       }
     }
-    return null;
+    return List.of();
   }
 
   private List<OntologyRepository> selectRepositories(String reflectionName) {
