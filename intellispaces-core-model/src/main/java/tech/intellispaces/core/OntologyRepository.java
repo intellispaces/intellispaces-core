@@ -85,7 +85,13 @@ public interface OntologyRepository {
   @Nullable
   List<ReflectionDomain> findSubdomains(String domainAlias);
 
-  @Nullable ReflectionDomain findBorrowedDomain(String domainAlias);
+  /**
+   * Searches for foreign domains matching the specified domain.
+   *
+   * @param domainId the domain identifier.
+   * @return the list of foreign domains.
+   */
+  List<ReflectionDomain> findForeignDomains(Rid domainId);
 
   /**
    * Searches for a channel by alias.

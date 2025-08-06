@@ -92,8 +92,8 @@ public class HashMapOntologyRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionDomain findBorrowedDomain(String domainAlias) {
-    throw NotImplementedExceptions.withCode("yKMZxw");
+  public List<ReflectionDomain> findForeignDomains(Rid domainId) {
+    return List.of();
   }
 
   @Override

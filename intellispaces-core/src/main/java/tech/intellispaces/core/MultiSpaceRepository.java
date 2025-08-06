@@ -146,14 +146,24 @@ public class MultiSpaceRepository implements OntologyRepository {
   }
 
   @Override
-  public @Nullable ReflectionDomain findBorrowedDomain(String domainAlias) {
-    for (OntologyRepository repository : selectRepositories(domainAlias)) {
-      ReflectionDomain reflection = repository.findBorrowedDomain(domainAlias);
-      if (reflection != null) {
-        return reflection;
+  public List<ReflectionDomain> findForeignDomains(Rid domainId) {
+    List<ReflectionDomain> foreignDomains = null;
+    boolean multiple = false;
+    for (List<OntologyRepository> repositories : repositories.values()) {
+      for (OntologyRepository repository : repositories) {
+        List<ReflectionDomain> domains = repository.findForeignDomains(domainId);
+        if (!domains.isEmpty()) {
+          if (foreignDomains == null) {
+            foreignDomains = domains;
+          } else if (!multiple) {
+            multiple = true;
+            foreignDomains = new ArrayList<>(foreignDomains);
+          }
+          foreignDomains.addAll(domains);
+        }
       }
     }
-    return null;
+    return foreignDomains;
   }
 
   @Override

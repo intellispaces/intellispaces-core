@@ -21,7 +21,7 @@ public class Domains {
    * @return created domain reflection.
    */
   public static ReflectionDomain create(Rid did) {
-    return new ReflectionDomainImpl(did, null, null, null, null, null, List.of());
+    return new ReflectionDomainImpl(did, null, null, null, null, List.of(), List.of());
   }
 
   /**
@@ -31,11 +31,11 @@ public class Domains {
    * @return created domain reflection.
    */
   public static ReflectionDomain create(String domainName) {
-    return new ReflectionDomainImpl(null, domainName, null, null, null, null, List.of());
+    return new ReflectionDomainImpl(null, domainName, null, null, null, List.of(), List.of());
   }
 
   public static ReflectionDomain create(Rid rid, String domainName, Class<?> domainClass, Type<?> domainType) {
-    return new ReflectionDomainImpl(rid, domainName, null, domainClass, domainType, null, List.of());
+    return new ReflectionDomainImpl(rid, domainName, null, domainClass, domainType, List.of(), List.of());
   }
 
   public static boolean isEqualDomains(ReflectionDomain domain1, ReflectionDomain domain2) {

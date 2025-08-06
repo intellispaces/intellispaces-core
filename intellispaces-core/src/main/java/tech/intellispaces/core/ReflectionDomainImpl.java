@@ -12,7 +12,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   private final String name;
   private final Class<?> domainClass;
   private final Type<?> domainType;
-  private final ReflectionDomain borrowedDomain;
+  private final List<ReflectionDomain> foreignDomains;
   private final List<ReflectionDomain> parentDomains;
 
   ReflectionDomainImpl(
@@ -21,7 +21,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
       ReflectionDomain domain,
       Class<?> domainClass,
       Type<?> domainType,
-      @Nullable ReflectionDomain borrowedDomain,
+      List<ReflectionDomain> foreignDomains,
       List<ReflectionDomain> parentDomains
   ) {
     super(domain);
@@ -34,7 +34,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
     this.name = name;
     this.domainClass = domainClass;
     this.domainType = domainType;
-    this.borrowedDomain = borrowedDomain;
+    this.foreignDomains = foreignDomains;
     this.parentDomains = parentDomains;
   }
 
@@ -59,8 +59,8 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   }
 
   @Override
-  public @Nullable ReflectionDomain borrowedDomain() {
-    return borrowedDomain;
+  public List<ReflectionDomain> foreignDomains() {
+    return foreignDomains;
   }
 
   @Override

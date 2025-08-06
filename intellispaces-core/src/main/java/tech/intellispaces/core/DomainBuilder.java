@@ -10,7 +10,7 @@ public class DomainBuilder {
   private Rid did;
   private String name;
   private ReflectionDomain ownDomain;
-  private ReflectionDomain borrowedDomain;
+  private List<ReflectionDomain> foreignDomains = List.of();
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
   private final Map<String, Projection> channelNameToProjection = new HashMap<>();
   private final List<ReflectionDomain> parentDomains = new ArrayList<>();
@@ -30,8 +30,8 @@ public class DomainBuilder {
     return this;
   }
 
-  public DomainBuilder borrowedDomain(ReflectionDomain borrowedDomain) {
-    this.borrowedDomain = borrowedDomain;
+  public DomainBuilder foreignDomains(List<ReflectionDomain> foreignDomains) {
+    this.foreignDomains = foreignDomains;
     return this;
   }
 
@@ -57,7 +57,7 @@ public class DomainBuilder {
         ownDomain,
         null,
         null,
-        borrowedDomain,
+        foreignDomains,
         Collections.unmodifiableList(parentDomains)
     );
     cidToProjection.forEach(domain::setProjectionThru);

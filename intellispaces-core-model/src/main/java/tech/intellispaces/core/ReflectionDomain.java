@@ -29,9 +29,9 @@ public interface ReflectionDomain extends Reflection {
   @Nullable Type<?> domainType();
 
   /**
-   * The borrowed domain.
+   * The foreign domains.
    */
-  @Nullable ReflectionDomain borrowedDomain();
+  List<ReflectionDomain> foreignDomains();
 
   /**
    * Domain outgoing channels.
