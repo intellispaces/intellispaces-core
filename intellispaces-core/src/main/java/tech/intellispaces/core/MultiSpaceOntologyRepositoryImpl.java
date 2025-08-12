@@ -2,6 +2,7 @@ package tech.intellispaces.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,20 +12,27 @@ import org.jetbrains.annotations.Nullable;
 import tech.intellispaces.commons.exception.NotImplementedExceptions;
 
 /**
- * The multi space ontology repository.
+ * The multi-space ontology repository implementation.
  */
-public class MultiSpaceRepository implements OntologyRepository {
-  private final Map<String, List<OntologyRepository>> repositories = new HashMap<>();
+public class MultiSpaceOntologyRepositoryImpl implements MultiSpaceOntologyRepository {
+  private final List<OntologyRepository> repositories = new ArrayList<>();
+  private final Map<String, List<OntologyRepository>> repositoriesBySpaceIndex = new HashMap<>();
 
   public void addRepository(OntologyRepository repository) {
+    repositories.add(repository);
     for (String spaceName : repository.spaces()) {
-      repositories.computeIfAbsent(spaceName, k -> new ArrayList<>()).add(repository);
+      repositoriesBySpaceIndex.computeIfAbsent(spaceName, k -> new ArrayList<>()).add(repository);
     }
   }
 
   @Override
+  public Collection<OntologyRepository> repositories() {
+    return Collections.unmodifiableList(repositories);
+  }
+
+  @Override
   public Collection<String> spaces() {
-    return repositories.keySet();
+    return repositoriesBySpaceIndex.keySet();
   }
 
   @Override
@@ -61,7 +69,7 @@ public class MultiSpaceRepository implements OntologyRepository {
 
   @Override
   public @Nullable ReflectionPoint findReflection(Rid pid, Rid did) {
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         ReflectionPoint reflection = repository.findReflection(pid, did);
         if (reflection != null) {
@@ -98,7 +106,7 @@ public class MultiSpaceRepository implements OntologyRepository {
   public Projection findProjection(Rid rid, Rid did, Rid cid) {
     Projection resultProjection = null;
     List<Projection> projections = null;
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         Projection projection = repository.findProjection(rid, did, cid);
         if (!projection.isUnknown()) {
@@ -123,7 +131,7 @@ public class MultiSpaceRepository implements OntologyRepository {
 
   @Override
   public List<ReflectionDomain> findSubdomains(Rid did) {
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         List<ReflectionDomain> subdomains = repository.findSubdomains(did);
         if (subdomains != null) {
@@ -149,7 +157,7 @@ public class MultiSpaceRepository implements OntologyRepository {
   public List<ReflectionDomain> findForeignDomains(Rid domainId) {
     List<ReflectionDomain> foreignDomains = null;
     boolean multiple = false;
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         List<ReflectionDomain> domains = repository.findForeignDomains(domainId);
         if (!domains.isEmpty()) {
@@ -179,7 +187,7 @@ public class MultiSpaceRepository implements OntologyRepository {
 
   @Override
   public @Nullable ReflectionChannel findChannel(ReflectionDomain sourceDomain, ReflectionDomain targetDomain) {
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         ReflectionChannel channel = repository.findChannel(sourceDomain, targetDomain);
         if (channel != null) {
@@ -214,7 +222,7 @@ public class MultiSpaceRepository implements OntologyRepository {
 
   @Override
   public List<Reflection> findRelatedReflections(Rid pid, Rid did) {
-    for (List<OntologyRepository> repositories : repositories.values()) {
+    for (List<OntologyRepository> repositories : repositoriesBySpaceIndex.values()) {
       for (OntologyRepository repository : repositories) {
         List<Reflection> relatedReflections = repository.findRelatedReflections(pid, did);
         if (!relatedReflections.isEmpty()) {
@@ -227,11 +235,11 @@ public class MultiSpaceRepository implements OntologyRepository {
 
   private List<OntologyRepository> selectRepositories(String reflectionName) {
     if (reflectionName == null) {
-      return repositories.values().stream()
+      return repositoriesBySpaceIndex.values().stream()
           .flatMap(Collection::stream)
           .toList();
     }
     String space = SpaceFunctions.getSpaceName(reflectionName);
-    return repositories.getOrDefault(space, List.of());
+    return repositoriesBySpaceIndex.getOrDefault(space, List.of());
   }
 }
