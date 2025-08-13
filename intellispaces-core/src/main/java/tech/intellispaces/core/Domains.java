@@ -27,15 +27,15 @@ public class Domains {
   /**
    * Creates a domain reflection.
    *
-   * @param domainName the domain name.
+   * @param alias the domain alias.
    * @return created domain reflection.
    */
-  public static ReflectionDomain create(String domainName) {
-    return new ReflectionDomainImpl(null, domainName, null, null, null, List.of(), List.of());
+  public static ReflectionDomain create(String alias) {
+    return new ReflectionDomainImpl(null, alias, null, null, null, List.of(), List.of());
   }
 
-  public static ReflectionDomain create(Rid rid, String domainName, Class<?> domainClass, Type<?> domainType) {
-    return new ReflectionDomainImpl(rid, domainName, null, domainClass, domainType, List.of(), List.of());
+  public static ReflectionDomain create(Rid rid, String alias, Class<?> domainClass, Type<?> domainType) {
+    return new ReflectionDomainImpl(rid, alias, null, domainClass, domainType, List.of(), List.of());
   }
 
   public static boolean isEqualDomains(ReflectionDomain domain1, ReflectionDomain domain2) {
@@ -44,8 +44,8 @@ public class Domains {
     if (domain1.rid() != null && domain2.rid() != null) {
       return Objects.equals(domain1.rid(), domain2.rid());
     }
-    if (domain1.reflectionName() != null && domain2.reflectionName() != null) {
-      return Objects.equals(domain1.reflectionName(), domain2.reflectionName());
+    if (domain1.alias() != null && domain2.alias() != null) {
+      return Objects.equals(domain1.alias(), domain2.alias());
     }
     if (domain1.domainClass() != null && domain2.domainClass() != null) {
       return Objects.equals(domain1.domainClass(), domain2.domainClass());

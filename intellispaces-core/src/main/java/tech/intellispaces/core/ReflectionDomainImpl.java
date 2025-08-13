@@ -2,40 +2,38 @@ package tech.intellispaces.core;
 
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
-
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 import tech.intellispaces.commons.type.Type;
 
 class ReflectionDomainImpl extends AbstractReflectionDomain {
   private final Rid did;
-  private final String name;
+  private final String alias;
   private final Class<?> domainClass;
   private final Type<?> domainType;
-  private final List<ReflectionDomain> foreignDomains;
   private final List<ReflectionDomain> parentDomains;
+  private final List<ReflectionDomain> foreignDomains;
 
   ReflectionDomainImpl(
       Rid did,
-      String name,
-      ReflectionDomain domain,
+      String alias,
+      ReflectionDomain baseDomain,
       Class<?> domainClass,
       Type<?> domainType,
-      List<ReflectionDomain> foreignDomains,
-      List<ReflectionDomain> parentDomains
+      List<ReflectionDomain> parentDomains,
+      List<ReflectionDomain> foreignDomains
   ) {
-    super(domain);
+    super(baseDomain);
 
-    if (did == null && name == null && domainClass == null) {
+    if (did == null && alias == null && domainClass == null) {
       throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
-          "rid, name, domainClass");
+          "domain rid, alias or class");
     }
     this.did = did;
-    this.name = name;
+    this.alias = alias;
     this.domainClass = domainClass;
     this.domainType = domainType;
-    this.foreignDomains = foreignDomains;
     this.parentDomains = parentDomains;
+    this.foreignDomains = foreignDomains;
   }
 
   @Override
@@ -44,8 +42,8 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   }
 
   @Override
-  public String reflectionName() {
-    return name;
+  public String alias() {
+    return alias;
   }
 
   @Override
@@ -59,17 +57,17 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   }
 
   @Override
+  public List<ReflectionDomain> parentDomains() {
+    return parentDomains;
+  }
+
+  @Override
   public List<ReflectionDomain> foreignDomains() {
     return foreignDomains;
   }
 
   @Override
-  public List<ReflectionChannel> domainChannels() {
+  public List<ReflectionChannel> contextChannels() {
     return List.of();
-  }
-
-  @Override
-  public List<ReflectionDomain> parentDomains() {
-    return parentDomains;
   }
 }

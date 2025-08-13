@@ -1,5 +1,7 @@
 package tech.intellispaces.core;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * The reflection considered as a channel in semantic space.
  */
@@ -15,7 +17,7 @@ public interface ReflectionChannel extends Reflection {
   /**
    * The channel alias in the context of the source domain.
    */
-  String alias();
+  @Nullable String contextAlias();
 
   /**
    * The channel source domain.

@@ -16,9 +16,9 @@ public class PrototypePointBuilder {
   public ReflectionPoint get() {
     return new ReflectionPointImpl(
         rid != null ? rid : prototype.rid(),
-        prototype.reflectionName(),
+        prototype.alias(),
         prototype.domain(),
-        prototype.underlyingPoints()
+        prototype.parentPoints()
     );
   }
 }

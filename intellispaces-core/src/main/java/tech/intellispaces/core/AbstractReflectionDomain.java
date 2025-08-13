@@ -7,33 +7,33 @@ import org.jetbrains.annotations.Nullable;
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
 abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomain, ReflectionPoint {
-  protected ReflectionDomain domain;
+  protected ReflectionDomain baseDomain;
 
-  AbstractReflectionDomain(ReflectionDomain domain) {
-    this.domain = domain;
+  AbstractReflectionDomain(ReflectionDomain baseDomain) {
+    this.baseDomain = baseDomain;
   }
 
   @Override
   public ReflectionDomain domain() {
-    return domain;
+    return baseDomain;
   }
 
   @Override
-  public @Nullable String domainName() {
-    if (domain != null) {
-      return domain.reflectionName();
+  public @Nullable String domainAlias() {
+    if (baseDomain != null) {
+      return baseDomain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> underlyingPoints() {
+  public List<ReflectionPoint> parentPoints() {
     return List.of();
   }
 
   @Override
   public boolean canBeRepresentedAsPoint() {
-    return domain != null;
+    return baseDomain != null;
   }
 
   @Override
@@ -77,13 +77,13 @@ abstract class AbstractReflectionDomain extends AbstractReflection implements Re
   @Override
   public String toString() {
     var sb = new StringBuilder();
-    if (reflectionName() != null) {
-      sb.append(reflectionName());
+    if (alias() != null) {
+      sb.append(alias());
     } else if (domainClass() != null) {
       sb.append(domainClass().getCanonicalName());
     }
     if (rid() != null) {
-      if (reflectionName() != null || domainClass() != null) {
+      if (alias() != null || domainClass() != null) {
         sb.append(" ");
       }
       sb.append("[").append(rid()).append("]");

@@ -29,17 +29,17 @@ public interface ReflectionDomain extends Reflection {
   @Nullable Type<?> domainType();
 
   /**
+   * Parent domains.
+   */
+  List<ReflectionDomain> parentDomains();
+
+  /**
    * The foreign domains.
    */
   List<ReflectionDomain> foreignDomains();
 
   /**
-   * Domain outgoing channels.
+   * Context channels.
    */
-  List<ReflectionChannel> domainChannels();
-
-  /**
-   * Parent domains.
-   */
-  List<ReflectionDomain> parentDomains();
+  List<ReflectionChannel> contextChannels();
 }

@@ -12,14 +12,10 @@ public interface ReflectionReference {
    * <p>
    * If the reflection is not registered, then <code>null</code> should be returned.
    */
-  @Nullable
-  Rid rid();
+  @Nullable Rid rid();
 
   /**
-   * The reflection qualified name.
-   * <p>
-   * If the reflection is not named, then <code>null</code> should be returned.
+   * The reflection alias in the context of a space.
    */
-  @Nullable
-  String reflectionName();
+  @Nullable String alias();
 }

@@ -27,7 +27,7 @@ class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace,
   }
 
   @Override
-  public String reflectionName() {
+  public String alias() {
     return alais;
   }
 
@@ -37,15 +37,15 @@ class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace,
   }
 
   @Override
-  public @Nullable String domainName() {
+  public @Nullable String domainAlias() {
     if (domain != null) {
-      return domain.reflectionName();
+      return domain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> underlyingPoints() {
+  public List<ReflectionPoint> parentPoints() {
     return List.of();
   }
 

@@ -36,12 +36,12 @@ class ReflectionChannelImpl extends AbstractReflection implements ReflectionChan
   }
 
   @Override
-  public String reflectionName() {
+  public String alias() {
     return name;
   }
 
   @Override
-  public String alias() {
+  public String contextAlias() {
     return alias;
   }
 
@@ -61,15 +61,15 @@ class ReflectionChannelImpl extends AbstractReflection implements ReflectionChan
   }
 
   @Override
-  public @Nullable String domainName() {
+  public @Nullable String domainAlias() {
     if (domain != null) {
-      return domain.reflectionName();
+      return domain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> underlyingPoints() {
+  public List<ReflectionPoint> parentPoints() {
     return List.of();
   }
 

@@ -21,7 +21,7 @@ class ReflectionImpl implements Reflection {
   }
 
   @Override
-  public @Nullable String reflectionName() {
+  public @Nullable String alias() {
     return reflectionName;
   }
 

@@ -37,7 +37,7 @@ public class MultiSpaceOntologyRepositoryImpl implements MultiSpaceOntologyRepos
 
   @Override
   public boolean add(Reflection reflection) {
-    for (OntologyRepository repository : selectRepositories(reflection.reflectionName())) {
+    for (OntologyRepository repository : selectRepositories(reflection.alias())) {
       if (repository.add(reflection)) {
         return true;
       }

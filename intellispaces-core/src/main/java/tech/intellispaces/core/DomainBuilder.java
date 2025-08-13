@@ -8,60 +8,65 @@ import java.util.Map;
 
 public class DomainBuilder {
   private Rid did;
-  private String name;
-  private ReflectionDomain ownDomain;
-  private List<ReflectionDomain> foreignDomains = List.of();
-  private final Map<Rid, Projection> cidToProjection = new HashMap<>();
-  private final Map<String, Projection> channelNameToProjection = new HashMap<>();
+  private String alias;
+  private ReflectionDomain baseDomain;
   private final List<ReflectionDomain> parentDomains = new ArrayList<>();
+  private List<ReflectionDomain> foreignDomains = List.of();
+  private final Map<Rid, Projection> projectionByChannelIdIndex = new HashMap<>();
+  private final Map<String, Projection> projectionByChannelAliasIndex = new HashMap<>();
 
   public DomainBuilder did(Rid did) {
     this.did = did;
     return this;
   }
 
-  public DomainBuilder name(String name) {
-    this.name = name;
+  public DomainBuilder alias(String alias) {
+    this.alias = alias;
     return this;
   }
 
-  public DomainBuilder ownDomain(ReflectionDomain domain) {
-    this.ownDomain = domain;
+  public DomainBuilder baseDomain(ReflectionDomain domain) {
+    this.baseDomain = domain;
     return this;
   }
 
-  public DomainBuilder foreignDomains(List<ReflectionDomain> foreignDomains) {
-    this.foreignDomains = foreignDomains;
+  public DomainBuilder parentDomain(ReflectionDomain domain) {
+    this.parentDomains.add(domain);
     return this;
   }
 
-  public DomainBuilder setProjectionThru(Rid cid, Projection projection) {
-    cidToProjection.put(cid, projection);
+  public DomainBuilder parentDomains(List<ReflectionDomain> domains) {
+    this.parentDomains.addAll(domains);
     return this;
   }
 
-  public DomainBuilder setProjectionThru(String channelName, Projection projection) {
-    channelNameToProjection.put(channelName, projection);
+  public DomainBuilder foreignDomains(List<ReflectionDomain> domains) {
+    this.foreignDomains = domains;
     return this;
   }
 
-  public DomainBuilder addParentDomains(List<ReflectionDomain> parentDomains) {
-    this.parentDomains.addAll(parentDomains);
+  public DomainBuilder projectionThru(Rid cid, Projection projection) {
+    projectionByChannelIdIndex.put(cid, projection);
+    return this;
+  }
+
+  public DomainBuilder projectionThru(String channelAlias, Projection projection) {
+    projectionByChannelAliasIndex.put(channelAlias, projection);
     return this;
   }
 
   public ReflectionDomain get() {
     var domain = new ReflectionDomainImpl(
         did,
-        name,
-        ownDomain,
+        alias,
+        baseDomain,
         null,
         null,
-        foreignDomains,
-        Collections.unmodifiableList(parentDomains)
+        Collections.unmodifiableList(parentDomains),
+        foreignDomains
     );
-    cidToProjection.forEach(domain::setProjectionThru);
-    channelNameToProjection.forEach(domain::setProjectionThru);
+    projectionByChannelIdIndex.forEach(domain::setProjectionThru);
+    projectionByChannelAliasIndex.forEach(domain::setProjectionThru);
     return domain;
   }
 }
