@@ -12,6 +12,7 @@ public class DomainBuilder {
   private ReflectionDomain baseDomain;
   private final List<ReflectionDomain> parentDomains = new ArrayList<>();
   private List<ReflectionDomain> foreignDomains = List.of();
+  private final List<ReflectionChannel> contextChannels = new ArrayList<>();
   private final Map<Rid, Projection> projectionByChannelIdIndex = new HashMap<>();
   private final Map<String, Projection> projectionByChannelAliasIndex = new HashMap<>();
 
@@ -45,6 +46,11 @@ public class DomainBuilder {
     return this;
   }
 
+  public DomainBuilder contextChannel(ReflectionChannel channel) {
+    this.contextChannels.add(channel);
+    return this;
+  }
+
   public DomainBuilder projectionThru(Rid cid, Projection projection) {
     projectionByChannelIdIndex.put(cid, projection);
     return this;
@@ -63,7 +69,8 @@ public class DomainBuilder {
         null,
         null,
         Collections.unmodifiableList(parentDomains),
-        foreignDomains
+        Collections.unmodifiableList(foreignDomains),
+        Collections.unmodifiableList(contextChannels)
     );
     projectionByChannelIdIndex.forEach(domain::setProjectionThru);
     projectionByChannelAliasIndex.forEach(domain::setProjectionThru);

@@ -12,6 +12,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
   private final Type<?> domainType;
   private final List<ReflectionDomain> parentDomains;
   private final List<ReflectionDomain> foreignDomains;
+  private final List<ReflectionChannel> contextChannels;
 
   ReflectionDomainImpl(
       Rid did,
@@ -20,7 +21,8 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
       Class<?> domainClass,
       Type<?> domainType,
       List<ReflectionDomain> parentDomains,
-      List<ReflectionDomain> foreignDomains
+      List<ReflectionDomain> foreignDomains,
+      List<ReflectionChannel> contextChannels
   ) {
     super(baseDomain);
 
@@ -34,6 +36,7 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
     this.domainType = domainType;
     this.parentDomains = parentDomains;
     this.foreignDomains = foreignDomains;
+    this.contextChannels = contextChannels;
   }
 
   @Override
@@ -68,6 +71,6 @@ class ReflectionDomainImpl extends AbstractReflectionDomain {
 
   @Override
   public List<ReflectionChannel> contextChannels() {
-    return List.of();
+    return contextChannels;
   }
 }
