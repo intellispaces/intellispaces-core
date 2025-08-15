@@ -16,20 +16,20 @@ public interface Reflection extends ReflectionReference {
   Projection projectionThru(Rid cid);
 
   /**
-   * Returns projection of this reflection through named channel.
+   * Returns projection of this reflection through channel.
    *
-   * @param channelName the channel qualified name.
+   * @param channelAlias the channel alias.
    * @return the projection.
    */
-  Projection projectionThru(String channelName);
+  Projection projectionThru(String channelAlias);
 
   /**
-   * Returns projection of this reflection to named domain.
+   * Returns projection of this reflection to domain.
    *
-   * @param domainName the target domain qualified name.
+   * @param domainAlias the target domain alias.
    * @return the projection.
    */
-  Projection projectionTo(String domainName);
+  Projection projectionTo(String domainAlias);
 
   /**
    * Returns projection of this reflection to target domain.

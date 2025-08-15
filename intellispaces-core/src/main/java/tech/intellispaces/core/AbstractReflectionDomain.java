@@ -6,34 +6,30 @@ import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
-abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomain, ReflectionPoint {
-  protected ReflectionDomain baseDomain;
-
-  AbstractReflectionDomain(ReflectionDomain baseDomain) {
-    this.baseDomain = baseDomain;
-  }
+abstract class AbstractReflectionDomain extends AbstractReflection implements ReflectionDomainPoint {
+  protected ReflectionDomain parentDomain;
 
   @Override
   public ReflectionDomain domain() {
-    return baseDomain;
+    return parentDomain;
   }
 
   @Override
   public @Nullable String domainAlias() {
-    if (baseDomain != null) {
-      return baseDomain.alias();
+    if (parentDomain != null) {
+      return parentDomain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> parentPoints() {
+  public List<ReflectionPoint> primaryPoints() {
     return List.of();
   }
 
   @Override
   public boolean canBeRepresentedAsPoint() {
-    return baseDomain != null;
+    return parentDomain != null;
   }
 
   @Override

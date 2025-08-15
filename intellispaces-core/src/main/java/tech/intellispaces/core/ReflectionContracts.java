@@ -40,6 +40,6 @@ public interface ReflectionContracts {
    * @return created contract.
    */
   static ReflectionContract create(Rid did, String type, PropertiesSet properties) {
-    return new ReflectionContractImpl(Domains.create(did), type, properties);
+    return new ReflectionContractImpl(Domains.get(did), type, properties);
   }
 }

@@ -10,14 +10,14 @@ import org.jetbrains.annotations.Nullable;
 public interface ReflectionPoint extends Reflection {
 
   /**
-   * The base domain.
+   * The parent domain.
    */
   ReflectionDomain domain();
 
   /**
-   * The base domain alias.
+   * The parent domain alias.
    */
   @Nullable String domainAlias();
 
-  List<ReflectionPoint> parentPoints();
+  List<ReflectionPoint> primaryPoints();
 }

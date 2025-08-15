@@ -1,48 +1,49 @@
 package tech.intellispaces.core;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 
 import tech.intellispaces.commons.exception.UnexpectedExceptions;
 
-class ReflectionChannelImpl extends AbstractReflection implements ReflectionChannel, ReflectionPoint {
-  private final Rid rid;
-  private final String name;
+class ReflectionChannelImpl extends AbstractReflection implements ReflectionChannelPoint {
+  private final Rid cid;
   private final String alias;
+  private final ReflectionDomain parentDomain;
   private final ReflectionDomain sourceDomain;
   private final ReflectionDomain targetDomain;
-  private final ReflectionDomain domain;
+  private final Map<Rid, Projection> projectionByChannelIdIndex = new HashMap<>();
+  private final Map<String, Projection> projectionByChannelAliasIndex = new HashMap<>();
 
   ReflectionChannelImpl(
-      Rid rid,
-      String name,
+      Rid cid,
       String alias,
+      ReflectionDomain parentDomain,
       ReflectionDomain sourceDomain,
-      ReflectionDomain targetDomain,
-      ReflectionDomain domain
+      ReflectionDomain targetDomain
   ) {
-    this.rid = rid;
-    this.name = name;
+    this.cid = cid;
     this.alias = alias;
+    this.parentDomain = parentDomain;
     this.sourceDomain = sourceDomain;
     this.targetDomain = targetDomain;
-    this.domain = domain;
   }
 
   @Override
   public Rid rid() {
-    return rid;
+    return cid;
   }
 
   @Override
   public String alias() {
-    return name;
+    return alias;
   }
 
   @Override
-  public String contextAlias() {
-    return alias;
+  public @Nullable String localAlias() {
+    return null;
   }
 
   @Override
@@ -57,25 +58,25 @@ class ReflectionChannelImpl extends AbstractReflection implements ReflectionChan
 
   @Override
   public ReflectionDomain domain() {
-    return domain;
+    return parentDomain;
   }
 
   @Override
   public @Nullable String domainAlias() {
-    if (domain != null) {
-      return domain.alias();
+    if (parentDomain != null) {
+      return parentDomain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> parentPoints() {
+  public List<ReflectionPoint> primaryPoints() {
     return List.of();
   }
 
   @Override
   public boolean canBeRepresentedAsPoint() {
-    return domain != null;
+    return parentDomain != null;
   }
 
   @Override
@@ -114,5 +115,30 @@ class ReflectionChannelImpl extends AbstractReflection implements ReflectionChan
   @Override
   public ReflectionSpace asSpace() {
     throw UnexpectedExceptions.withMessage("This reflection cannot be considered as a reflection space");
+  }
+
+  @Override
+  public Projection projectionThru(Rid cid) {
+    return null;
+  }
+
+  @Override
+  public Projection projectionThru(String channelAlias) {
+    return null;
+  }
+
+  @Override
+  public Projection projectionTo(String domainAlias) {
+    return null;
+  }
+
+  @Override
+  public Projection projectionTo(ReflectionDomain domain) {
+    return null;
+  }
+
+  @Override
+  public List<Reflection> relatedReflections() {
+    return List.of();
   }
 }

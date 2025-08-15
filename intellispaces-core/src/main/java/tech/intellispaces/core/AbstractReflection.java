@@ -6,8 +6,8 @@ import java.util.Map;
 
 public abstract class AbstractReflection implements Reflection {
   private final Map<Rid, Projection> cidToProjection = new HashMap<>();
-  private final Map<String, Projection> channelNameToProjection = new HashMap<>();
-  private final Map<String, Projection> targetDomainNameToProjection = new HashMap<>();
+  private final Map<String, Projection> projectionByChannelAliasIndex = new HashMap<>();
+  private final Map<String, Projection> projectionByTargetDomainAliasIndex = new HashMap<>();
 
   @Override
   public Projection projectionThru(Rid cid) {
@@ -15,13 +15,13 @@ public abstract class AbstractReflection implements Reflection {
   }
 
   @Override
-  public Projection projectionThru(String channelName) {
-    return channelNameToProjection.getOrDefault(channelName, Projections.unknown());
+  public Projection projectionThru(String channelAlias) {
+    return projectionByChannelAliasIndex.getOrDefault(channelAlias, Projections.unknown());
   }
 
   @Override
-  public Projection projectionTo(String domainName) {
-    return targetDomainNameToProjection.getOrDefault(domainName, Projections.unknown());
+  public Projection projectionTo(String domainAlias) {
+    return projectionByTargetDomainAliasIndex.getOrDefault(domainAlias, Projections.unknown());
   }
 
   @Override
@@ -42,10 +42,10 @@ public abstract class AbstractReflection implements Reflection {
   }
 
   protected void setProjectionThru(String channelName, Projection projection) {
-    channelNameToProjection.put(channelName, projection);
+    projectionByChannelAliasIndex.put(channelName, projection);
   }
 
   protected void setProjectionTo(String domainName, Projection projection) {
-    targetDomainNameToProjection.put(domainName, projection);
+    projectionByTargetDomainAliasIndex.put(domainName, projection);
   }
 }

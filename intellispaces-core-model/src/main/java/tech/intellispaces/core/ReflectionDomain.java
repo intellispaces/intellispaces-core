@@ -29,9 +29,9 @@ public interface ReflectionDomain extends Reflection {
   @Nullable Type<?> domainType();
 
   /**
-   * Parent domains.
+   * Primary domains.
    */
-  List<ReflectionDomain> parentDomains();
+  List<ReflectionDomain> primaryDomains();
 
   /**
    * The foreign domains.

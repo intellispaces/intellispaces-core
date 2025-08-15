@@ -9,19 +9,19 @@ import tech.intellispaces.commons.exception.NotImplementedExceptions;
 class ReflectionPointImpl extends AbstractReflection implements ReflectionPoint {
   private final Rid rid;
   private final String name;
-  private final ReflectionDomain baseDomain;
-  private final List<ReflectionPoint> parentPoints;
+  private final ReflectionDomain parentDomain;
+  private final List<ReflectionPoint> primaryPoints;
 
   ReflectionPointImpl(
       Rid rid,
       String name,
-      ReflectionDomain baseDomain,
-      List<ReflectionPoint> parentPoints
+      ReflectionDomain parentDomain,
+      List<ReflectionPoint> primaryPoints
   ) {
     this.rid = rid;
     this.name = name;
-    this.baseDomain = baseDomain;
-    this.parentPoints = parentPoints;
+    this.parentDomain = parentDomain;
+    this.primaryPoints = primaryPoints;
   }
 
   @Override
@@ -36,20 +36,20 @@ class ReflectionPointImpl extends AbstractReflection implements ReflectionPoint 
 
   @Override
   public ReflectionDomain domain() {
-    return baseDomain;
+    return parentDomain;
   }
 
   @Override
   public @Nullable String domainAlias() {
-    if (baseDomain != null) {
-      return baseDomain.alias();
+    if (parentDomain != null) {
+      return parentDomain.alias();
     }
     return null;
   }
 
   @Override
-  public List<ReflectionPoint> parentPoints() {
-    return parentPoints;
+  public List<ReflectionPoint> primaryPoints() {
+    return primaryPoints;
   }
 
   @Override

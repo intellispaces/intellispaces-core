@@ -45,7 +45,7 @@ class ReflectionSpaceImpl extends AbstractReflection implements ReflectionSpace,
   }
 
   @Override
-  public List<ReflectionPoint> parentPoints() {
+  public List<ReflectionPoint> primaryPoints() {
     return List.of();
   }
 

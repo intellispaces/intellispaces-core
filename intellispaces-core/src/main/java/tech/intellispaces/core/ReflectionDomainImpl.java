@@ -1,76 +1,75 @@
 package tech.intellispaces.core;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import tech.intellispaces.commons.exception.UnexpectedExceptions;
+import org.jetbrains.annotations.Nullable;
+
 import tech.intellispaces.commons.type.Type;
 
 class ReflectionDomainImpl extends AbstractReflectionDomain {
   private final Rid did;
   private final String alias;
-  private final Class<?> domainClass;
   private final Type<?> domainType;
-  private final List<ReflectionDomain> parentDomains;
+  private final Class<?> domainClass;
+  private final List<ReflectionDomain> primaryDomains;
   private final List<ReflectionDomain> foreignDomains;
   private final List<ReflectionChannel> contextChannels;
+  private final Map<Rid, Projection> projectionByChannelIdIndex = new HashMap<>();
+  private final Map<String, Projection> projectionByChannelAliasIndex = new HashMap<>();
 
   ReflectionDomainImpl(
       Rid did,
       String alias,
-      ReflectionDomain baseDomain,
-      Class<?> domainClass,
       Type<?> domainType,
-      List<ReflectionDomain> parentDomains,
+      Class<?> domainClass,
+      List<ReflectionDomain> primaryDomains,
       List<ReflectionDomain> foreignDomains,
       List<ReflectionChannel> contextChannels
   ) {
-    super(baseDomain);
-
-    if (did == null && alias == null && domainClass == null) {
-      throw UnexpectedExceptions.withMessage("At least one of the following attributes must be defined: " +
-          "domain rid, alias or class");
-    }
     this.did = did;
     this.alias = alias;
-    this.domainClass = domainClass;
     this.domainType = domainType;
-    this.parentDomains = parentDomains;
+    this.domainClass = domainClass;
+    this.primaryDomains = primaryDomains;
     this.foreignDomains = foreignDomains;
     this.contextChannels = contextChannels;
   }
 
   @Override
-  public Rid rid() {
+  public @Nullable Rid rid() {
     return did;
   }
 
   @Override
-  public String alias() {
+  public @Nullable String alias() {
     return alias;
   }
 
   @Override
-  public Class<?> domainClass() {
+  public @Nullable Class<?> domainClass() {
     return domainClass;
   }
 
   @Override
-  public Type<?> domainType() {
+  public @Nullable Type<?> domainType() {
     return domainType;
   }
 
   @Override
-  public List<ReflectionDomain> parentDomains() {
-    return parentDomains;
+  public List<ReflectionDomain> primaryDomains() {
+    return Collections.unmodifiableList(primaryDomains);
   }
 
   @Override
   public List<ReflectionDomain> foreignDomains() {
-    return foreignDomains;
+    return Collections.unmodifiableList(foreignDomains);
   }
 
   @Override
   public List<ReflectionChannel> contextChannels() {
-    return contextChannels;
+    return Collections.unmodifiableList(contextChannels);
   }
 }

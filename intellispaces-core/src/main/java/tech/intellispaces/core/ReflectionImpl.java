@@ -31,12 +31,12 @@ class ReflectionImpl implements Reflection {
   }
 
   @Override
-  public Projection projectionThru(String channelName) {
+  public Projection projectionThru(String channelAlias) {
     return Projections.unknown();
   }
 
   @Override
-  public Projection projectionTo(String domainName) {
+  public Projection projectionTo(String domainAlias) {
     return Projections.unknown();
   }
 

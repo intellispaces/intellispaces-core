@@ -17,7 +17,7 @@ public interface ReflectionChannel extends Reflection {
   /**
    * The channel alias in the context of the source domain.
    */
-  @Nullable String contextAlias();
+  @Nullable String localAlias();
 
   /**
    * The channel source domain.

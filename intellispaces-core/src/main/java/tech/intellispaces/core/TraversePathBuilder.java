@@ -14,7 +14,7 @@ public class TraversePathBuilder {
   }
 
   public TraversePathBuilder addTransitionThru(Rid cid) {
-    transitions.add(new TraverseTransitionThruImpl(Channels.build().cid(cid).get()));
+    transitions.add(new TraverseTransitionThruImpl(Channels.blank().cid(cid).release()));
     return this;
   }
 

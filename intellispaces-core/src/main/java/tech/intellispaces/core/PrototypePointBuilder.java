@@ -18,7 +18,7 @@ public class PrototypePointBuilder {
         rid != null ? rid : prototype.rid(),
         prototype.alias(),
         prototype.domain(),
-        prototype.parentPoints()
+        prototype.primaryPoints()
     );
   }
 }
